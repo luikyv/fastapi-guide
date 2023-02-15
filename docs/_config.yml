@@ -1,3 +1,6 @@
-name: FastAPI Guide
+title: Guia FastAPI
 description: A guide to get started with FastAPI
 markdown: kramdown
+remote_theme: pages-themes/architect@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one

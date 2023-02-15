@@ -2,7 +2,6 @@
 
 ## Introdução
 
-### Apresentação
 Nesse guia vou te apresentar o framework FastAPI e como você pode utilizar ele para construir APIs do tipo REST em Python de maneira eficiente.
 
 Antes de começarmos, um pouco de contexto. Hoje em dia, a comunicação entre sistemas de computação se dá em grande parte por meio de APIs. Nesse cenário, um sistema A envia requisições HTTP (HTTP sendo um protocolo de comunicação na internet) a um sistema B e recebe como resposta os recursos solicitados ou a confirmação de que uma ação foi realizada no sistema B.
@@ -17,9 +16,7 @@ Além disso, como o próprio nome diz, o FastAPI é fast. O "rápido" em seu nom
 
 Falando agora de popularidade, FastAPI vem desbancando diversos outros frameworks e, apesar de ter aparecido recentemente no mercado, muitos desenvolvedores e empresas estão optando por ele.
 
-Indo ao que interessa a todos, vemos que a média salarial de desenvolvedores de FastAPI é bem alta e maior do que a de desenvolvedores de frameworks como .NET e Node.js o que é um feito impressionante.
-
-https://www.linkedin.com/posts/tiangolo_fastapi-activity-7010582598099849217-CzZt?utm_source=share&utm_medium=member_desktop
+Indo ao que interessa a todos, vemos que a [média salarial](https://www.linkedin.com/posts/tiangolo_fastapi-activity-7010582598099849217-CzZt?utm_source=share&utm_medium=member_desktop) de desenvolvedores de FastAPI é bem alta e maior do que a de desenvolvedores de frameworks como .NET e Node.js o que é um feito impressionante.
 
 Depois dessa breve introdução, vamos ver em detalhes alguns conceitos sobre desenvolvimento de APIs, ferramentas do Python e entender como de fato usar FastAPI.
 
@@ -38,10 +35,7 @@ Dentre os métodos disponíveis no protocolo HTTP, os que mais iremos usar são 
 
 ### Rest APIs
 
-Antes de entendermos o que é uma API REST, precisamos ter em mente o que é uma API. A sigla API significa Application Programming Interface, então uma interface de programação de aplicação. Uma API nada mais é do que um contrato a ser seguido para poder intergir como uma aplicação que possui recursos que interessam ao desenvolvedor. Esse recursos mantidos pela aplicação podem ser dados, uma lógida de computação, entre outros. Por exemplo o Google tem uma API que permite desenvolvedores integrar mapas personalizados do Google Maps em suas aplicações. Assim uma API pode ser vista como um intermediador entre sua aplicação e a aplicação de um terceiro que possui recursos que você precisa.
-
-https://materiais.ipnet.cloud/google-maps-api-entrada-b?utm_source=google-search&utm_medium=cpc&utm_campaign=[Cadastro]_Google_Maps_Platform_Especificas_de_Conversao_-_Fundo_Brasil&utm_id=17377035032&utm_term=135647100845&utm_content=api%20google%20maps&gclid=Cj0KCQiA5NSdBhDfARIsALzs2ECb9W2XJsivUJCRjqqfl0krafI_ttroFSgQRXOhFZEBlMjGHJSl0ycaApbtEALw_wcB
-
+Antes de entendermos o que é uma API REST, precisamos ter em mente o que é uma API. A sigla API significa Application Programming Interface, então uma interface de programação de aplicação. Uma API nada mais é do que um contrato a ser seguido para poder intergir como uma aplicação que possui recursos que interessam ao desenvolvedor. Esse recursos mantidos pela aplicação podem ser dados, uma lógida de computação, entre outros. Por exemplo o [Google](https://materiais.ipnet.cloud/google-maps-api-entrada-b?utm_source=google-search&utm_medium=cpc&utm_campaign=[Cadastro]_Google_Maps_Platform_Especificas_de_Conversao_-_Fundo_Brasil&utm_id=17377035032&utm_term=135647100845&utm_content=api%20google%20maps&gclid=Cj0KCQiA5NSdBhDfARIsALzs2ECb9W2XJsivUJCRjqqfl0krafI_ttroFSgQRXOhFZEBlMjGHJSl0ycaApbtEALw_wcB) tem uma API que permite desenvolvedores integrar mapas personalizados do Google Maps em suas aplicações. Assim uma API pode ser vista como um intermediador entre sua aplicação e a aplicação de um terceiro que possui recursos que você precisa.
 
 Já uma API REST, você também vai ouvir API RESTful, é uma API que segue a arquitetura REST, onde REST quer dizer "Representational State Transfer" ou Transferência de Estado Representacional. REST é um conjunto de restrições para a arquitetura da sua API. Se sua API respeita essas restrições, você tem uma API REST.
 
@@ -84,7 +78,6 @@ Para garantir que `my_env_3911` será ativado cada vez que você entrar em `fast
 pyenv local my_env_3911
 ```
 
-
 ### Poetry
 Poetry é uma ferramenta de gestão de dependencias e empacotamento para projetos em Python.
 
@@ -110,7 +103,7 @@ Já se quisermos remover a dependência:
 poetry remove pandas
 ```
 
-Se quiser saber mais sobre Pyenv e Poetry, confira esse artigo no Medium: https://medium.com/@luikymagno/manage-dependencies-in-python-with-poetry-18562c944e96
+Se quiser saber mais sobre Pyenv e Poetry, confira esse artigo no Medium: [Manage Dependencies in Python with Poetry](https://medium.com/@luikymagno/manage-dependencies-in-python-with-poetry-18562c944e96)
 
 ### Programação Assíncrona
 
