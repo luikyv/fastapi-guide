@@ -1,12 +1,12 @@
 # Introdução
 
-Nesse guia vou te apresentar o framework FastAPI e como você pode utilizar ele para construir APIs do tipo REST em Python de maneira eficiente.
+Nesse guia apresentaremos o framework FastAPI e como ele pode ser utilizado para construir APIs do tipo REST em Python de maneira eficiente.
 
 Antes de começarmos, um pouco de contexto. Hoje em dia, a comunicação entre sistemas de computação se dá em grande parte por meio de APIs. Nesse cenário, um sistema A envia requisições HTTP (HTTP sendo um protocolo de comunicação na internet) a um sistema B e recebe como resposta os recursos solicitados ou a confirmação de que uma ação foi realizada no sistema B.
 
-Dito isso, FastAPI entra como um framework escrito em Python para facilitar o desenvolvimento de APIs. Existem diversos outros frameworks para isso em Python e ainda muitos outros se considerarmos outras linguagens de programação como Java e C#. Então porque escolher FastAPI nesse mar de opções?
+Dito isso, FastAPI entra como um framework escrito em Python para facilitar o desenvolvimento de APIs. Existem diversos outros frameworks para isso em Python e ainda muitos outros se considerarmos outras linguagens de programação como Java e C#. Então porque escolher FastAPI nesse mar de opções? Vejamos alguns motivos.
 
-Vou te apresentar alguns motivos, mas existem muitos outros. Antes de tudo, como toda boa pergunta nesse mundo da programação, a resposta é "depende da aplicação". Por ser baseado em Python o desenvolvimento com FastAPI é extremamente fácil, mas, dependendo da sua aplicação, pode ser mais interessante usar Spring que é baseado em Java por exemplo. Talvez Java possua algumas vantagens que possam ser mais interessantes para você.
+Por ser baseado em Python o desenvolvimento com FastAPI é extremamente fácil, mas, dependendo da sua aplicação, pode ser mais interessante usar Spring que é baseado em Java por exemplo. Talvez Java possua algumas vantagens que possam ser mais interessantes para sua aplicação.
 
 Além da facilidade que Python traz ao desenvolvimento, essa linguagem é bastante útil em ambientes onde a manipulação de dados é constante. Podemos comprovar isso ao pensar que a bibliotecas mais famosas para manipulação de dados vêm do Python. Temos como exemplos Numpy e Pandas. Assim, FastAPI se torna uma boa opção se sua aplicação vai ter como foco dados.
 
@@ -33,20 +33,20 @@ Dentre os métodos disponíveis no protocolo HTTP, os que mais iremos usar são 
 
 ## Rest APIs
 
-Antes de entendermos o que é uma API REST, precisamos ter em mente o que é uma API. A sigla API significa Application Programming Interface, então uma interface de programação de aplicação. Uma API nada mais é do que um contrato a ser seguido para poder intergir como uma aplicação que possui recursos que interessam ao desenvolvedor. Esse recursos mantidos pela aplicação podem ser dados, uma lógida de computação, entre outros. Por exemplo o [Google](https://materiais.ipnet.cloud/google-maps-api-entrada-b?utm_source=google-search&utm_medium=cpc&utm_campaign=[Cadastro]_Google_Maps_Platform_Especificas_de_Conversao_-_Fundo_Brasil&utm_id=17377035032&utm_term=135647100845&utm_content=api%20google%20maps&gclid=Cj0KCQiA5NSdBhDfARIsALzs2ECb9W2XJsivUJCRjqqfl0krafI_ttroFSgQRXOhFZEBlMjGHJSl0ycaApbtEALw_wcB) tem uma API que permite desenvolvedores integrar mapas personalizados do Google Maps em suas aplicações. Assim uma API pode ser vista como um intermediador entre sua aplicação e a aplicação de um terceiro que possui recursos que você precisa.
+Antes de entendermos o que é uma API REST, precisamos ter em mente o que é uma API. A sigla API significa Application Programming Interface, então uma interface de programação de aplicação. Uma API nada mais é do que um contrato a ser seguido para poder intergir como uma aplicação que possui recursos que interessam ao desenvolvedor. Esse recursos mantidos pela aplicação podem ser dados, uma lógida de computação, entre outros. Por exemplo, o Google tem uma [API](https://materiais.ipnet.cloud/google-maps-api-entrada-b?utm_source=google-search&utm_medium=cpc&utm_campaign=[Cadastro]_Google_Maps_Platform_Especificas_de_Conversao_-_Fundo_Brasil&utm_id=17377035032&utm_term=135647100845&utm_content=api%20google%20maps&gclid=Cj0KCQiA5NSdBhDfARIsALzs2ECb9W2XJsivUJCRjqqfl0krafI_ttroFSgQRXOhFZEBlMjGHJSl0ycaApbtEALw_wcB) que permite desenvolvedores integrar mapas personalizados do Google Maps em suas aplicações. Assim uma API pode ser vista como um intermediador entre sua aplicação e a aplicação de um terceiro que possui recursos que você precisa.
 
 Já uma API REST, você também vai ouvir API RESTful, é uma API que segue a arquitetura REST, onde REST quer dizer "Representational State Transfer" ou Transferência de Estado Representacional. REST é um conjunto de restrições para a arquitetura da sua API. Se sua API respeita essas restrições, você tem uma API REST.
 
-O nome REST se pelo fato que, quando um cliente requisita um recurso à API através do protocolo HTTP, a API response com uma representação do estado atual do recurso. Essa reprentação pode vir em diversos formatos como Json e HTML. Entretanto, Json é o mais utilizado por ser uma formato eficiente com estrutura simples e várias linguagens de programação permitem interação com ele.
+O nome REST se dá pelo fato que, quando um cliente requisita um recurso à API através do protocolo HTTP, a API responde com uma representação do estado atual do recurso. Essa reprentação pode vir em diversos formatos como JSON e HTML. Entretanto, JSON é o mais utilizado por ser uma formato eficiente com estrutura simples e várias linguagens de programação permitem interação com ele.
 
 Dentre algumas restrições incluídas no REST temos
 * Arquitetura cliente/servidor onde a comunicação se dá com HTTP (HTTP sendo um protocolo de comunicação onde conseguimos interagir com um servidor de endereço conhecido, endereço esse que é uma url, utilizando métodos como GET, POST, ...)
 * Comunicação sem estado. Isso quer dizer basicamente que o servidor em si não armazena o estado das chamadas que ele recebe, então uma chamada ao servidor não interfere em outras.
 
-Existem algumas outras restrições, mas só pelo fato de utilizar o framework FastAPI muitas já são respeitadas. Além disso, apesar dessas restrições, APIs REST são simples de desenvolver e utilizar e, por isso, estão se tornando a primeira opção dos desenvolvedores.
+Existem algumas outras restrições, mas, só pelo fato de utilizar o framework FastAPI, muitas já são respeitadas. Além disso, apesar dessas restrições, APIs REST são simples de desenvolver e utilizar e, por isso, estão se tornando a primeira opção dos desenvolvedores.
 
 ## Pyenv
-Quando trabalhando com projetos em Python, é fundamental a utilização de ambientes virtuais. Para demonstrar isso, imagine que você tem dois projetos em Python em seu computador e ambos dependem da biblioteca, digamos, Tortoise. O problema é que o primeiro projeto precisa que a versão de Tortoise seja 1.0, já o segundo precisa da versão 1.1. Ambientes virtuais resolver esse problema, pois para cada projeto você cria um ambiente virtual e esses ambientes são independetes um do outro. Assim, você pode usar diferentes versão da mesma biblioteca ou mesmo diferentes versões do Python, sem que hajam conflitos entre eles.
+Quando trabalhando com projetos em Python, é fundamental a utilização de ambientes virtuais. Para demonstrar isso, imagine que você tem dois projetos em Python em seu computador e ambos dependem da biblioteca, digamos, Tortoise. O problema é que o primeiro projeto precisa que a versão de Tortoise seja 1.0, já o segundo precisa da versão 1.1. Ambientes virtuais resolver esse problema, pois, para cada projeto, você cria um ambiente virtual e esses ambientes são independetes um do outro. Assim, você pode usar diferentes versão da mesma biblioteca ou mesmo diferentes versões do Python, sem que hajam conflitos entre eles.
 
 Aqui usaremos Pyenv para criar e gerenciar ambientes virtuais, mas você pode usar qualquer outra ferramenta que lide com ambientes virtuais.
 
@@ -59,25 +59,25 @@ mkdir my-project && cd my-project
 Vamos usar a versão 3.9.11 de Python. Caso você não a tenha em seu computador, pode instalar com:
 
 ```bash
-mkdir fastapi-course
-cd fastapi-course
+mkdir fastapi-guide
+cd fastapi-guide
 ```
 
-Agora, vamos criar o ambiente virtual e daremos o nome de `my_env_3911`. Como boa prática, coloque a versão que você está usando no nome do ambiente para que seja mais fácil de lembrar. Após isso, basta ativá-lo.
+Agora, vamos criar o ambiente virtual que daremos o nome de `my_env_3911`. Como boa prática, coloque a versão que você está usando no nome do ambiente para que seja mais fácil de lembrar. Após isso, basta ativá-lo.
 
 ```bash
 pyenv virtualenv 3.9.11 my_env_3911
 pyenv activate my_env_3911
 ```
 
-Para garantir que `my_env_3911` será ativado cada vez que você entrar em `fastapi-course`, execute o seguinte comando. Ele criar um arquivo chamado .python-version dentro de `fastapi-course`. Esse arquivo tem o nome do ambiente virtual que você está usando que é, no nosso caso, `my_env_3911`.
+Para garantir que `my_env_3911` será ativado cada vez que você entrar em `fastapi-guide`, execute o seguinte comando. Ele criar um arquivo chamado .python-version dentro de `fastapi-guide`. Esse arquivo tem o nome do ambiente virtual que você está usando que é, no nosso caso, `my_env_3911`.
 
 ```bash
 pyenv local my_env_3911
 ```
 
 ## Poetry
-Poetry é uma ferramenta de gestão de dependencias e empacotamento para projetos em Python.
+Poetry é uma ferramenta de gestão de dependências e empacotamento para projetos em Python.
 
 Depois que você declara as dependências que o software que você está desenvolvendo precisa, Poetry as instala e atualiza por você. Além disso, Poetry garante que instalar seu projeto em outros ambientes não causar supresas indesejáveis. Isso significa que seu projeto pode ser compartilhado de maneira consistente e outras pessoas podem utilizá-lo sem grandes dificuldades.
 
