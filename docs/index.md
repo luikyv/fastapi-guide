@@ -414,7 +414,7 @@ class User(BaseModel):
 Para modelar essas entidades no banco de dados, precisamos entender a relação entre elas para que possamos as implementar corretamente usando Tortoise. Vamos pensar um pouco, um usuário pode comprar vários livros, mas uma unidade de um livro só pode ser comprada por um usuário. Assim, vemos que a relação entre as entidade é um usuário para muitos livros. Para implementar essa relação, uma referência ao usuário, logo sua chave primária, deve exister em livro, sendo esse o conceito de chave estrangeira.
 
 Em um arquivo models.py, insira:
-```
+```python
 from tortoise import fields
 from tortoise.models import Model
 
@@ -562,7 +562,7 @@ O banco de dados em memória escolhido é o SQLite e para habilitá-lo, basta tr
 FastAPI também busca facilitar o desenvolvimento em relação aos testes e por isso fornece um cliente de teste que permite interagir com nossa API. Esse cliente é uma instância da classe TestClient. Além disso, para criar o cliente de teste e popular o banco de dados antes de cada teste, podemos usar fixtures em Python. De maneira resumida, testes anotados com fixtures terão certas instruções executadas antes e outras depois a cada vez que forem chamados. Essas instruções são definidas na própria fixture e são separadas pelo comando `yield`. 
 
 Crie uma pasta `tests` e, em um arquivo tests.py, insira:
-```
+```python
 from typing import Generator
 
 import pytest
