@@ -1,5 +1,5 @@
 title: Guia FastAPI
-description: A guide to get started with FastAPI
+description: Um guia para começar com FastAPI
 markdown: kramdown
 remote_theme: pages-themes/architect@v0.2.0
 plugins:

@@ -1,6 +1,4 @@
-# Guia FastAPI
-
-## Introdução
+# Introdução
 
 Nesse guia vou te apresentar o framework FastAPI e como você pode utilizar ele para construir APIs do tipo REST em Python de maneira eficiente.
 
@@ -20,9 +18,9 @@ Indo ao que interessa a todos, vemos que a [média salarial](https://www.linkedi
 
 Depois dessa breve introdução, vamos ver em detalhes alguns conceitos sobre desenvolvimento de APIs, ferramentas do Python e entender como de fato usar FastAPI.
 
-## Fundamentos
+# Fundamentos
 
-### HTTP
+## HTTP
 HTTP é um protocolo que permite que clientes iniciem comunicações com servidores pela internet a fim de realizar transações. Dentre essas transações podemos citar recuperar uma página html ou executar uma operação no servidor para alterar o estado de um banco de dados.
 
 Usando o protocolo HTTP, podemos interagir com APIs. Para isso, durante o desenvolvimento com FastAPI, precisamos definir os endpoints e os respectivos métodos que serão invocados para realizar as chamadas. Para aqueles não familiarizados, um endpoint é um ponto de acesso a recursos da API. Essencialmente, é uma URL por onde um cliente externo se comunica com a API usando o protocolo HTTP.
@@ -33,7 +31,7 @@ Dentre os métodos disponíveis no protocolo HTTP, os que mais iremos usar são 
 * PUT: Para atualizar recursos
 * DELETE: Para deletar recursos.
 
-### Rest APIs
+## Rest APIs
 
 Antes de entendermos o que é uma API REST, precisamos ter em mente o que é uma API. A sigla API significa Application Programming Interface, então uma interface de programação de aplicação. Uma API nada mais é do que um contrato a ser seguido para poder intergir como uma aplicação que possui recursos que interessam ao desenvolvedor. Esse recursos mantidos pela aplicação podem ser dados, uma lógida de computação, entre outros. Por exemplo o [Google](https://materiais.ipnet.cloud/google-maps-api-entrada-b?utm_source=google-search&utm_medium=cpc&utm_campaign=[Cadastro]_Google_Maps_Platform_Especificas_de_Conversao_-_Fundo_Brasil&utm_id=17377035032&utm_term=135647100845&utm_content=api%20google%20maps&gclid=Cj0KCQiA5NSdBhDfARIsALzs2ECb9W2XJsivUJCRjqqfl0krafI_ttroFSgQRXOhFZEBlMjGHJSl0ycaApbtEALw_wcB) tem uma API que permite desenvolvedores integrar mapas personalizados do Google Maps em suas aplicações. Assim uma API pode ser vista como um intermediador entre sua aplicação e a aplicação de um terceiro que possui recursos que você precisa.
 
@@ -47,7 +45,7 @@ Dentre algumas restrições incluídas no REST temos
 
 Existem algumas outras restrições, mas só pelo fato de utilizar o framework FastAPI muitas já são respeitadas. Além disso, apesar dessas restrições, APIs REST são simples de desenvolver e utilizar e, por isso, estão se tornando a primeira opção dos desenvolvedores.
 
-### Pyenv
+## Pyenv
 Quando trabalhando com projetos em Python, é fundamental a utilização de ambientes virtuais. Para demonstrar isso, imagine que você tem dois projetos em Python em seu computador e ambos dependem da biblioteca, digamos, Tortoise. O problema é que o primeiro projeto precisa que a versão de Tortoise seja 1.0, já o segundo precisa da versão 1.1. Ambientes virtuais resolver esse problema, pois para cada projeto você cria um ambiente virtual e esses ambientes são independetes um do outro. Assim, você pode usar diferentes versão da mesma biblioteca ou mesmo diferentes versões do Python, sem que hajam conflitos entre eles.
 
 Aqui usaremos Pyenv para criar e gerenciar ambientes virtuais, mas você pode usar qualquer outra ferramenta que lide com ambientes virtuais.
@@ -78,7 +76,7 @@ Para garantir que `my_env_3911` será ativado cada vez que você entrar em `fast
 pyenv local my_env_3911
 ```
 
-### Poetry
+## Poetry
 Poetry é uma ferramenta de gestão de dependencias e empacotamento para projetos em Python.
 
 Depois que você declara as dependências que o software que você está desenvolvendo precisa, Poetry as instala e atualiza por você. Além disso, Poetry garante que instalar seu projeto em outros ambientes não causar supresas indesejáveis. Isso significa que seu projeto pode ser compartilhado de maneira consistente e outras pessoas podem utilizá-lo sem grandes dificuldades.
@@ -105,7 +103,7 @@ poetry remove pandas
 
 Se quiser saber mais sobre Pyenv e Poetry, confira esse artigo no Medium: [Manage Dependencies in Python with Poetry](https://medium.com/@luikymagno/manage-dependencies-in-python-with-poetry-18562c944e96)
 
-### Programação Assíncrona
+## Programação Assíncrona
 
 Uma das grandes vantagens que o FastAPI traz é a possibilidade de utilizar programação asíncrona. Nesse modelo de programação, nos fazemos uma chamada a uma tarefa e vamos para outra enquanto a primeira aguarda ser finalizada. Assim, conseguimos introduzir paralelismo em nosso software e temos controle de quando essas chamadas asíncronas são feitas.
 
@@ -151,11 +149,11 @@ Perceba que ao invés de esperar 2 segundos para as duas chamadas da operação 
 
 Se quiser saber mais como funciona a programação asíncrona em Python, confira meu artigo no Medium que mostra como usar Asyncio e seus conceitos base: [Asynchrounous Programming with Python Asyncio](https://medium.com/@luikymagno/asynchrounous-programming-with-python-asyncio-db87f2936fb0).
 
-## FastAPI
+# FastAPI
 
 Com os fundamentos estabelecidos, agora podemos entender como FastAPI os aplica e como melhor usar esse framework.
 
-### Primeiros passos
+## Primeiros passos
 
 Para começar, vamos construir uma API que seja a mais simples possível.
 
@@ -185,7 +183,7 @@ Além disso, perceba que o objeto que representa sua aplicação e pelo qual voc
 
 Ademais, FastAPI gera automaticamente uma especificação da sua API no padrão OpenAPI e tem integração com o Swagger que é um serviço que renderiza uma interface amigável a partir dessa especificação. Nessa interface, você tem acesso a informações como docstrings e schemas aceitos como payload nos seus endpoints, além de poder interagir com a API diretamente por essa interface. Para acessá-la, vá em `http://localhost:8000/docs` ou, se preferir, existe uma outra versão da interface em `http://localhost:8000/redoc`.
 
-### Parâmetros
+## Parâmetros
 
 Existem dois tipos de parâmetros que você pode definir em seus endpoints e ambos são responsáveis por modificar o comportamente do endpoint sendo chamado. O primeiro são os parâmetros de query e funcionam exatamente como parâmetros de uma função qualquer.
 ```
@@ -214,7 +212,7 @@ No exemplo acima o endpoint `/books` recebe obrigatoriamente um parâmetro do ti
 
 Quando precisamos acessar um recurso disponibilizado pela API e precisamos o **especificar**, digamos, com um id, parâmetros de path trazem um melhor entendimento do que a requisição sendo executada faz. No exemplo, nós queremos dos livros aquele de id 1. Assim `/books/1` se torna mais legível do que se fosse implementado com um parâmetro de query `/books?id=1`. Ambos atingem o mesmo objetivo, mas nesse caso, usar o parâmetro de path traz mais legibilidade a sua aplicação, por isso é interessante saber como usá-lo para que seja aplicado devidamente.
 
-### Request Body (Payload)
+## Request Body (Payload)
 
 Em diversas situações, será necessário receber dados vindos do cliente para executar a lógica implementada no endpoint. Para que o cliente possa enviar esses dados e API os receber, precisamos definir um **request body** que, em FastAPI, nada mais é do que um objeto que será instanciado a partir de uma classe que definimos usando [Pydantic](https://docs.pydantic.dev/). Por sua vez, Pydantic é uma biblioteca em Python para modelação e interpretação de dados que introduz mecanismos de validação e tratamento de erros.
 
@@ -253,7 +251,7 @@ Ou, se preferir, ao acessar o swagger fornecido pelo FastAPI, você pode realiza
 
 Perceba também que dessa vez definimos o tipo do retorno do POST endpoint `/book` como o tipo Book. Ao fazer isso, haverá uma validação de que o que retornamos de fato é um objeto do tipo Book. Além disso, esse informação do tipo de retorno também é apresentada na especificação OpenAPI o que melhora o entendimento de como usar a API.
 
-## FastAPI com Banco de dados
+# FastAPI com Banco de dados
 
 Ao desenvolver APIs, um dos cenários mais frequentes é a utilização de banco de dados relacionais. Com bancos de dados, temos acesso a informações armazenadas de maneira persistente e essas informações podem ser usadas para implementar a lógica de negócio de nossos endpoints. Em certos casos, a API que construimos terá o único objetivo de servir como interface ao banco de dados para que outras APIs possam acessá-lo com facilidade.
 
@@ -337,7 +335,7 @@ Ao iniciar o servidor, o comando `register_tortoise` será executado. Ele inicia
 
 Tortoise também nos possibilita diversas outras capacidades de manipulação de dados como filtrar e definir relações mais complexas entre as tabelas. Nós uma aplicação mais completa na seção onde implementaremos um projeto com FastAPI. 
 
-## Segurança no FastAPI
+# Segurança no FastAPI
 
 Não importa o framework que você decida usar, a segurança da API é um assunto extremamente importante e precisa ser lidado com muita atenção. Existem muitos jeitos de garantir que seus endpoints sejam requisitados somente por aqueles que estão autenticados e possuem os acessos corretos. Atualmente, a utilização de tokens e do framework OAuth2 tem dominado o mercado em relação a essa segurança. Porém, aqui, veremos um jeito mais simples a fim de introduzir o assunto e facilitar seu entendimento. Para isso, vamos usar a autenticação do tipo `Basic` nesse curso em vez de outras mais complexas como utilizando tokens JWT.
 
@@ -385,10 +383,10 @@ Para este exemplo, será melhor usar a interface fornecida pelo FastAPI no Swagg
 
 Se você quiser se aprofundar mais em segurança de APIs, confira esse artigo no Medium TODO.
 
-## Mini projeto
+# Mini projeto
 Nessa seção, vamos colocar tudo o que vimos em prática em um projeto que vai simular alguns aspectos do contexto de uma livraria. Além disso, após terminar a implementação, vamos dar os primeiros passos nos testes da aplicação para garantir que ela funcione como esperado, assim como vamos criar uma imagem docker para ela a fim de que ela possa ser implantada em qualquer máquina onde Docker esteja instalado.
 
-### Modelagem dos Dados
+## Modelagem dos Dados
 
 Para o contexto simulado em nosso projeto, teremos 3 entidades que serão:
 * user com atributos username e password
@@ -460,7 +458,7 @@ class Book(Model):
         return Book(**self.dict())
 ```
 
-### Endpoints
+## Endpoints
 
 Feito a modelagem dos dados, podemos começar a implementar a lógica dos endpoints.
 
@@ -553,7 +551,7 @@ Perceba que os endpoints criados aqui foram implementados usando funções asín
 Com os endpoint implementados, ao ativar o servidor, podemos utilizar a interface do Swagger para realizar operações de cadastro de usuários e livros, assim como vendas e consulta do histórico de compras de um usuário.
 
 
-### Testes
+## Testes
 
 Uma das partes mais importantes de todo projeto de software é o teste das funcionalidades implementas para tentar mitigar possíveis erros de lógica do sistema. Em Python, a biblioteca Pytest é bastante útil para esta finalidade. Nesse exemplo, vamos testar o endpoint `/books` da nossa API.
 
@@ -624,7 +622,7 @@ class TestBooks:
 Para executar os testes, basta rodar o comand `pytest`.
 
 
-### Docker
+## Docker
 Docker é um software que permite definir containers onde nossos projetos serão executados de maneira que qualquer outra máquina que possua Docker instalado poderá ativar o container sem a necessidade de se preocupar com demais dependencias. Com Docker, podemos agilizar a implantação de nossos projetos em ambientes como produção, assim como compartilhá-los de maneira simples permitindo a facilitação do processo de desenvolvimento.
 
 Primeiro, vamos definir o arquivo Docker que permitirá estabelecer a imagem da qual containers poderão ser criados. Na raíz do projeto, insira o arquivo `Dockerfile`
