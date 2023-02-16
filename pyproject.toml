@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "fastapi-course"
+version = "0.1.0"
+description = ""
+authors = ["luikymagno <luikymagno@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.89.1"
+uvicorn = "^0.20.0"
+tortoise-orm = "^0.19.2"
+pytest = "^7.2.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

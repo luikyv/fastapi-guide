@@ -118,7 +118,7 @@ import asyncio
 async def fake_blocking_operation(id: int) -> None:
     print(f"Start faking blocking operation {id}")
     await asyncio.sleep(1)
-    print(f"Fake blocking operation {id} has complete")
+    print(f"Fake blocking operation {id} has completed")
 ```
 
 Se quisermos executar duas chamadas dessa função paralelamente, podemos usar a função `asyncio.gather` que recebe como argumento uma sequência de corotinas.
@@ -565,12 +565,11 @@ FastAPI também busca facilitar o desenvolvimento em relação aos testes e por 
 
 Crie uma pasta `tests` e, em um arquivo tests.py, insira:
 ```python
-from typing import Generator
+from typing import Generator, AsyncGenerator
 
 import pytest
 from fastapi.testclient import TestClient
 from main import app
-from models import Users
 
 from tortoise.contrib.test import finalizer, initializer
 
@@ -588,14 +587,14 @@ def client() -> Generator:
     finalizer()
 
 @pytest.fixture()
-def populate_user() -> Generator:
-    await models.User.create(*user.dict())
+async def populate_user() -> AsyncGenerator:
+    await models.User(**user.dict()).save()
     yield None
 
 @pytest.fixture()
-def populate_user_and_books() -> Generator:
-    await models.User.create(*user.dict())
-    await models.Book.create(*book.dict(), user_id=user.username)
+async def populate_user_and_books() -> AsyncGenerator:
+    await models.User(**user.dict()).save()
+    await models.Book(**book.dict(), user_id=user.username).save()
     yield None
 
 class TestBooks:
@@ -603,10 +602,10 @@ class TestBooks:
     headers = {"Authorization": "Basic {user.username}{user.password}"}
 
     @populate_user
-    def test_user_without_books(self, client: TestClient, _) -> None:
+    def test_user_without_books(self, _, client: TestClient) -> None:
         response = client.get(
-            url,
-            headers=headers
+            self.url,
+            headers=self.headers
         )
         assert response.status_code == 200
         assert response.json() == []
@@ -614,8 +613,8 @@ class TestBooks:
     @populate_user_and_books
     def test_user_with_book(self, client: TestClient, _) -> None:
         response = client.get(
-            url,
-            headers=headers
+            self.url,
+            headers=self.headers
         )
         assert response.status_code == 200
         assert response.json() == [book.dict()]

@@ -1,7 +1,7 @@
 from tortoise import fields
 from tortoise.models import Model
 
-import schemas
+import api.schemas as schemas
 
 class User(Model):
     """
