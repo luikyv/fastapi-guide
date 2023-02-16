@@ -52,27 +52,27 @@ Aqui usaremos Pyenv para criar e gerenciar ambientes virtuais, mas você pode us
 
 Para começar vamos criar o diretório do nosso projeto.
 
-```
+```bash
 mkdir my-project && cd my-project
 ```
 
 Vamos usar a versão 3.9.11 de Python. Caso você não a tenha em seu computador, pode instalar com:
 
-```
+```bash
 mkdir fastapi-course
 cd fastapi-course
 ```
 
 Agora, vamos criar o ambiente virtual e daremos o nome de `my_env_3911`. Como boa prática, coloque a versão que você está usando no nome do ambiente para que seja mais fácil de lembrar. Após isso, basta ativá-lo.
 
-```
+```bash
 pyenv virtualenv 3.9.11 my_env_3911
 pyenv activate my_env_3911
 ```
 
 Para garantir que `my_env_3911` será ativado cada vez que você entrar em `fastapi-course`, execute o seguinte comando. Ele criar um arquivo chamado .python-version dentro de `fastapi-course`. Esse arquivo tem o nome do ambiente virtual que você está usando que é, no nosso caso, `my_env_3911`.
 
-```
+```bash
 pyenv local my_env_3911
 ```
 
@@ -85,19 +85,19 @@ Para instalar Poetry, podemos usar este script: https://install.python-poetry.or
 
 Vamos inicializar o Poetry no diretório do nosso projeto.
 
-```
+```bash
 poetry init
 ```
 
 Para declarar as dependências que precisamos, basta utilizar o comando `poetry add`. Como exemplo:
 
-```
+```bash
 poetry add pandas
 ```
 
 Já se quisermos remover a dependência:
 
-```
+```bash
 poetry remove pandas
 ```
 
@@ -112,17 +112,17 @@ O modelo de programação asíncrona é bastante eficaz quando precisamos execut
 Em Python, temos duas palavras chave que nos permitem implementar operações asíncronas. A primeira é `async` e você a usa para definir funções que serão executadas asíncronamente. A outra é `await` e é usada para chamar funções asíncronas. Sendo mais específico, funções definidas com `async` são chamadas de corotinas e o retorno dessas são futures. Quando você chama uma função asíncrona com `await`, ela te retorna um future que é um objeto que vai ser resolvido depois como o real resultado da função assim que ele termina de executar.
 
 Vejamos um exempo de como isso funciona na prática. Aqui, vamos usar a biblioteca Asyncio para chamar asíncronamente uma função de sleep
-```
+```python
 import asyncio
 
 async def fake_blocking_operation(id: int) -> None:
     print(f"Start faking blocking operation {id}")
     await asyncio.sleep(1)
-    print(f"Fake blocking operation {id} has co
+    print(f"Fake blocking operation {id} has complete")
 ```
 
 Se quisermos executar duas chamadas dessa função paralelamente, podemos usar a função `asyncio.gather` que recebe como argumento uma sequência de corotinas.
-```
+```python
 async def main_in_parallel() -> None:
     await asyncio.gather(
         fake_blocking_operation(1),
@@ -158,7 +158,7 @@ Com os fundamentos estabelecidos, agora podemos entender como FastAPI os aplica 
 Para começar, vamos construir uma API que seja a mais simples possível.
 
 Crie um arquivo chamado `main.py` e insira as seguintes linhas de código.
-```
+```python
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -173,7 +173,7 @@ Aqui temos nosso primeiro endpoint `/hello-world`. Esse endpoint responde ao mé
 
 Para ver isso em ação, vamos levantar a aplicação. Para isso, basta executar o seguinte comando `uvicorn main:app --reload`. Esse comando instancia sua aplicação a cada vez que há uma mudança no código e a deixa acessível no servidor web [Uvicorn](https://www.uvicorn.org/) disponível localmente. Agora, digite no seu browser (Chrome, Safari, ...) `http://127.0.0.1:8000/hello-world` e você verá o seguinte Json. Vale lembrar, seu navegador executa automaticamente o método GET quando você digita uma URL na barra de pesquisa.
 
-```
+```json
 {"message": "Hello, World!"}
 ```
 
@@ -186,24 +186,26 @@ Ademais, FastAPI gera automaticamente uma especificação da sua API no padrão 
 ## Parâmetros
 
 Existem dois tipos de parâmetros que você pode definir em seus endpoints e ambos são responsáveis por modificar o comportamente do endpoint sendo chamado. O primeiro são os parâmetros de query e funcionam exatamente como parâmetros de uma função qualquer.
-```
+```python
 @app.get("/books")
 async def read_book(genre: str):
     return {"book_genre": genre}
 ```
+
 Para chamar esse endpoint, poderiamos realizar um GET em `/books?genre=action`. Neste caso, estariamos recuperando um ou vários livros do gênero ação.
 Parâmetros de query veem ao final do path e são precedidos de `?`. Se houvessem mais parâmetros, eles precisariam estar separados por `&` na URL. Eles são úteis para filtar recursos e trazer mais informação à execução da regra de negócio.
 
 Além disso, podemos customizar ainda mais esse parâmetro com validações e valores padrão. Para isso, podemos usar o objeto `Query` como valor padrão do parâmetro como no seguinte exemplo:
-```
+```python
 @app.get("/books")
 async def read_book(genre: str = Query(default="romance", max_length=50)):
     return {"book_genre": genre}
 ```
+
 Ao fazer isso, o parâmetro `genre` deve ter no máximo 50 caracteres e será "romance" caso nenhum valor for atribuído a ele. Se alguma validação falhar, o cliente receberá o erro 422 que significa Unprocessable Entity.
 
 Já o segundo é do tipo path e eles serão esperados, passados e extraídos pela sua API no path do endpoint.
-```
+```python
 @app.get("/books/{book_id}")
 async def read_book(book_id: int):
     return {"book_id": book_id}
@@ -217,7 +219,7 @@ Quando precisamos acessar um recurso disponibilizado pela API e precisamos o **e
 Em diversas situações, será necessário receber dados vindos do cliente para executar a lógica implementada no endpoint. Para que o cliente possa enviar esses dados e API os receber, precisamos definir um **request body** que, em FastAPI, nada mais é do que um objeto que será instanciado a partir de uma classe que definimos usando [Pydantic](https://docs.pydantic.dev/). Por sua vez, Pydantic é uma biblioteca em Python para modelação e interpretação de dados que introduz mecanismos de validação e tratamento de erros.
 
 Vamos definir nossa primeira payload. Ao criar os campos da classe, podemos seguir o padrão `nome: tipo = valor_padrão`. Em um arquivo chamados schemas.py, insira:
-```
+```python
 from typing import Optional
 from pydantic import BaseModel
 
@@ -228,7 +230,7 @@ class Book(BaseModel):
 ```
 
 Feito isso, podemos incluir a payload Book em um endpoint de criação de livros. Como estamos tratando a criação, vamos definir o endpoint com o método POST.
-```
+```python
 import schemas
 from fastapi import FastAPI
 
@@ -242,7 +244,7 @@ async def create_book(book: schemas.Book) -> schemas.Book:
 Ao fazer isso, o endpoint `/book` do tipo POST vai receber um Json que deve estar formatado com as variáveis de Book e vai criar um objeto dessa classe o qual vai passar como parâmetro ao endpoint onde nós podemos realizar as operações que desejamos. Caso o Json recebido não esteja no formato adequado, o cliente receberá o erro 422.
 
 Para ver isso funcionando, você pode realizar uma chamda no terminal, já que o browser não será útil, pois precisamos realizar um POST e não um GET. Com o servidor rodando localmente, execute o comando:
-```
+```bash
 curl -X POST http://localhost:8080/book
    -H 'Content-Type: application/json'
    -d '{"title":"Harry Potter","description":"The Sorcerer's Stone","price": 50.0}'
@@ -260,7 +262,7 @@ Umas da maneiras mais simples de interagir com bancos de dados é através de OR
 ### Tortoise
 
 Vejamos em linhas gerais como usar Tortoise em nossos projetos. Primeiro certifique-se que a instância de PostgreSQL está ativa com o comando.
-```
+```bash
 systemctl status postgresql
 ```
 
@@ -272,7 +274,7 @@ TODO
 Uma vez o banco criado e ativo, podemos nos concentrar em como usar a ORM. Nesse exemplo, vamos definir uma classe chamada `Book` que mapeará uma tabela chamada `books` usando Tortoise. Essa tabela terá uma chave primária que será o campo `id` criado automaticamente, um campo `name` do tipo Char, um campo `description` também do tipo Char, um campo `price` que será um float e por fim um campo `created_at` que será do tipo data e será criado automaticamente sem que precisemos definí-lo.
 
 Em um arquivo chamado models.py, digite:
-```
+```python
 from tortoise import fields
 from tortoise.models import Model
 
@@ -298,7 +300,7 @@ class Book(Model):
 ```
 
 Agora, modifique o arquivo `main.py` para que esteja assim:
-```
+```python
 from typing import List
 import logging
 from fastapi import FastAPI, status
@@ -342,7 +344,7 @@ Não importa o framework que você decida usar, a segurança da API é um assunt
 A autenticação do tipo `Basic` requer apenas que o cliente da API passe um cabeçalho (header) na requisição informando o nome de usuário e sua senha. No lado da API, verificamos que o usuário de fato existe e que a senha fornecida é correta. Caso esses testes sejam positivos, damos continuidade à lógica do endpoint e retornamos a devida resposta. Entretanto, se houver falha, o endpoint retornará o erro 401 que significa que o cliente não está autorizado.
 
 Vejamos como implementar isso com um exemplo:
-```
+```python
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
@@ -396,7 +398,7 @@ Cada uma dessas entidades será mapeada por uma tabela. Além disso, cada entida
 
 
 Em um arquivo schemas.py, insira:
-```
+```python
 from typing import Optional
 from pydantic import BaseModel
 
@@ -470,7 +472,7 @@ Em nosso projeto, teremos endpoints.
 * GET `/books`. Protegido por HTTP Basic, recupera todos os livros do usuário autenticado.
 
 Em um arquivo main.py, insira:
-```
+```python
 import logging
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
@@ -626,7 +628,7 @@ Para executar os testes, basta rodar o comand `pytest`.
 Docker é um software que permite definir containers onde nossos projetos serão executados de maneira que qualquer outra máquina que possua Docker instalado poderá ativar o container sem a necessidade de se preocupar com demais dependencias. Com Docker, podemos agilizar a implantação de nossos projetos em ambientes como produção, assim como compartilhá-los de maneira simples permitindo a facilitação do processo de desenvolvimento.
 
 Primeiro, vamos definir o arquivo Docker que permitirá estabelecer a imagem da qual containers poderão ser criados. Na raíz do projeto, insira o arquivo `Dockerfile`
-```
+```dockerfile
 # Start from the official Python base image
 FROM python:3.9
 # Install Poetry
