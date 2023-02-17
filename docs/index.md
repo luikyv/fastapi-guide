@@ -266,9 +266,10 @@ Vejamos em linhas gerais como usar Tortoise em nossos projetos. Primeiro certifi
 systemctl status postgresql
 ```
 
-Para usar Tortoise, precisamos primeiro criar um banco de dados que vai conter as tabelas que criarmos. Vamos criar um banco chamado `library` e, para isso, execute os seguintes comandos no terminal.
-TODO
-```
+Para usar Tortoise, precisamos primeiro criar um banco de dados que vai conter as tabelas que criarmos. Vamos criar um banco chamado `library` e, para isso, execute os seguintes comandos no terminal. A senha default é `postgres`.
+```bash
+psql --username=postgres --host=localhost
+CREATE DATABASE library;
 ```
 
 Uma vez o banco criado e ativo, podemos nos concentrar em como usar a ORM. Nesse exemplo, vamos definir uma classe chamada `Book` que mapeará uma tabela chamada `books` usando Tortoise. Essa tabela terá uma chave primária que será o campo `id` criado automaticamente, um campo `name` do tipo Char, um campo `description` também do tipo Char, um campo `price` que será um float e por fim um campo `created_at` que será do tipo data e será criado automaticamente sem que precisemos definí-lo.
@@ -645,4 +646,8 @@ RUN poetry install
 
 # Start the server 
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]
+```
+
+Agora, basta construir a imagem e instanciar um container a partir dela.
+```bash
 ```
