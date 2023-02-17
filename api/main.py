@@ -6,7 +6,7 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from tortoise.contrib.fastapi import register_tortoise
 
 import schemas as schemas
-import api.models as models
+import models as models
 
 app = FastAPI()
 

@@ -30,6 +30,7 @@ class Book(Model):
     id = fields.IntField(pk=True)
     title = fields.CharField(max_length=100)
     description = fields.CharField(max_length=100)
+    author = fields.CharField(max_length=100)
     price = fields.DecimalField(max_digits=10, decimal_places=2)
     sold = fields.BooleanField(default=False)
     user: fields.ForeignKeyNullableRelation[User] = fields.ForeignKeyField(
@@ -38,4 +39,5 @@ class Book(Model):
 
     def to_book(self) -> schemas.Book:
         """Create a book of type schemas.Book from models.Book"""
+        print(dict(self))
         return schemas.Book(**dict(self))
