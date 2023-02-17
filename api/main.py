@@ -7,6 +7,7 @@ from tortoise.contrib.fastapi import register_tortoise
 
 import schemas as schemas
 import models as models
+from config import Config
 
 app = FastAPI()
 
@@ -83,7 +84,7 @@ async def get_books(user_db: models.User = Depends(get_current_user)) -> List[sc
 
 register_tortoise(
     app,
-    db_url="sqlite://:memory:",
+    db_url=Config.DB_URL,
     modules={"models": ["models"]},
     generate_schemas=True,
     add_exception_handlers=True,

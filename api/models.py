@@ -11,7 +11,7 @@ class User(Model):
     class Meta:
         table="users"
 
-    username = fields.CharField(max_length=100, pk=True)
+    username = fields.CharField(max_length=100, pk=True, unique=True)
     password = fields.CharField(max_length=100)
     books: fields.ReverseRelation["Book"]
 
@@ -27,14 +27,14 @@ class Book(Model):
     class Meta:
         table="books"
 
-    id = fields.IntField(pk=True)
+    id = fields.IntField(pk=True, unique=True)
     title = fields.CharField(max_length=100)
     description = fields.CharField(max_length=100)
     author = fields.CharField(max_length=100)
     price = fields.DecimalField(max_digits=10, decimal_places=2)
     sold = fields.BooleanField(default=False)
     user: fields.ForeignKeyNullableRelation[User] = fields.ForeignKeyField(
-        "models.User", related_name="books"
+        "models.User", related_name="books", null=True
     )
 
     def to_book(self) -> schemas.Book:
