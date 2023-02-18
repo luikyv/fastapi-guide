@@ -1,3 +1,5 @@
+# Um Guia Para Começar Com FastAPI
+
 Nesse guia apresentaremos o framework FastAPI e como ele pode ser utilizado para construir APIs do tipo REST em Python de maneira eficiente.
 
 Antes de começarmos, um pouco de contexto. Hoje em dia, a comunicação entre sistemas de computação se dá em grande parte por meio de APIs. Nesse cenário, um sistema A envia requisições HTTP (HTTP sendo um protocolo de comunicação na internet) a um sistema B e recebe como resposta os recursos solicitados ou a confirmação de que uma ação foi realizada no sistema B.
@@ -384,7 +386,7 @@ Para este exemplo, será melhor usar a interface fornecida pelo FastAPI no Swagg
 
 Se você quiser se aprofundar mais em segurança, confira esse artigo no Medium [The Role Cryptography Plays in Security](https://medium.com/@luikymagno/the-role-cryptography-plays-in-security-32d522413e1e).
 
-# Mini projeto
+# Mini Projeto
 Nessa seção, vamos colocar tudo o que vimos em prática em um projeto que vai simular alguns aspectos do contexto de uma livraria. Além disso, após terminar a implementação, vamos dar os primeiros passos nos testes da aplicação para garantir que ela funcione como esperado, assim como vamos criar uma imagem docker para ela a fim de que ela possa ser implantada em qualquer máquina onde Docker esteja instalado.
 
 ## Modelagem dos Dados

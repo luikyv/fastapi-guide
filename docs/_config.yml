@@ -1,6 +1,13 @@
 title: Guia FastAPI
 description: Um guia para começar com FastAPI
+description: >
+  Um guia para começar com FastAPI usando ferramentas como Poetry e Tortoise-ORM.
+
+author:
+  name: luikymagno
+  email: luikymagno@gmail.com
+
 markdown: kramdown
 theme: minima
 plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
+- jekyll-remote-theme

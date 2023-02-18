@@ -15,5 +15,4 @@ RUN poetry export --without-hashes --format=requirements.txt > requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 # Start the server
-EXPOSE 5432
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
