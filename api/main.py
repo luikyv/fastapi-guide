@@ -5,8 +5,8 @@ from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from tortoise.contrib.fastapi import register_tortoise
 
-import schemas as schemas
-import models as models
+import schemas
+import models
 from config import Config
 
 app = FastAPI()

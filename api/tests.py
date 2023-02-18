@@ -2,13 +2,16 @@ from typing import Generator, AsyncGenerator
 
 import pytest
 from fastapi.testclient import TestClient
-from main import app
+from config import Config
 
 from tortoise.contrib.test import finalizer, initializer
 from tortoise import Tortoise
 
 import schemas
 import models
+
+Config.DB_URL = "sqlite://:memory:"
+from main import app
 
 user = schemas.User(username="testuser", password="password")
 book = schemas.Book(title="Test Book", author="Test Author", description="Test book description", price=50.0)    
@@ -23,8 +26,10 @@ class TestBooks:
 
     @pytest.mark.asyncio
     async def test_user_without_books(self, client: TestClient) -> None:
+        
+        # Populate the db
         await models.User(**user.dict()).save()
-
+        
         response = client.get(
             self.url,
             auth=(user.username, user.password),
@@ -34,6 +39,8 @@ class TestBooks:
     
     @pytest.mark.asyncio
     async def test_user_with_book(self, client: TestClient) -> None:
+
+        # Populate the db
         await models.User(**user.dict()).save()
         await models.Book(**book.dict(), user_id=user.username).save()
 

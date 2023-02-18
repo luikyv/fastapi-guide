@@ -1,5 +1,3 @@
-# Introdução
-
 Nesse guia apresentaremos o framework FastAPI e como ele pode ser utilizado para construir APIs do tipo REST em Python de maneira eficiente.
 
 Antes de começarmos, um pouco de contexto. Hoje em dia, a comunicação entre sistemas de computação se dá em grande parte por meio de APIs. Nesse cenário, um sistema A envia requisições HTTP (HTTP sendo um protocolo de comunicação na internet) a um sistema B e recebe como resposta os recursos solicitados ou a confirmação de que uma ação foi realizada no sistema B.
@@ -171,13 +169,13 @@ async def greet():
 
 Aqui temos nosso primeiro endpoint `/hello-world`. Esse endpoint responde ao método GET com o seguinte Json: `{"message": "Hello, World!"}`.
 
-Para ver isso em ação, vamos levantar a aplicação. Para isso, basta executar o seguinte comando `uvicorn main:app --reload`. Esse comando instancia sua aplicação a cada vez que há uma mudança no código e a deixa acessível no servidor web [Uvicorn](https://www.uvicorn.org/) disponível localmente. Agora, digite no seu browser (Chrome, Safari, ...) `http://127.0.0.1:8000/hello-world` e você verá o seguinte Json. Vale lembrar, seu navegador executa automaticamente o método GET quando você digita uma URL na barra de pesquisa.
+Para ver isso em ação, vamos levantar a aplicação. Para isso, basta executar o seguinte comando `uvicorn main:app --reload`. Esse comando instancia sua aplicação a cada vez que há uma mudança no código e a deixa acessível no servidor web [Uvicorn](https://www.uvicorn.org/) disponível localmente. Agora, digite no seu navegador `http://127.0.0.1:8000/hello-world` e você verá o seguinte Json. Vale lembrar, seu navegador executa automaticamente o método GET quando você digita uma URL na barra de pesquisa.
 
 ```json
 {"message": "Hello, World!"}
 ```
 
-Note que, em seu browser, você não apenas digitou `/hello-world`, mas sim este com `http://127.0.0.1:8000` prefixado. `http://127.0.0.1:8000` ou também `http://localhost:8000` se refere ao host da sua aplicação e a porta onde ela está disponível, como você iniciou o servidor localmente, o seu host é, intuitivamente, o `localhost`.
+Note que você não apenas digitou `/hello-world`, mas sim este com `http://127.0.0.1:8000` prefixado. `http://127.0.0.1:8000` ou também `http://localhost:8000` se refere ao host da sua aplicação e a porta onde ela está disponível, como você iniciou o servidor localmente, o seu host é, intuitivamente, o `localhost`.
 
 Além disso, perceba que o objeto que representa sua aplicação e pelo qual você define seus endpoints é uma instância de `FastAPI` que referenciamos com a variável `app`. Com esse objeto, definimos endpoints informando seu path, `hello-world` em nosso exemplo, e decorando funções que performam as regras de negócio usando o marcador `@`. Essas funções serão executadas quando chamadas pelo método e path corretos.
 
@@ -204,7 +202,7 @@ async def read_book(genre: str = Query(default="romance", max_length=50)):
 
 Ao fazer isso, o parâmetro `genre` deve ter no máximo 50 caracteres e será "romance" caso nenhum valor for atribuído a ele. Se alguma validação falhar, o cliente receberá o erro 422 que significa Unprocessable Entity.
 
-Já o segundo é do tipo path e eles serão esperados, passados e extraídos pela sua API no path do endpoint.
+Já o segundo é do tipo path e é passado e extraído pela sua API no path do endpoint.
 ```python
 @app.get("/books/{book_id}")
 async def read_book(book_id: int):
@@ -212,7 +210,7 @@ async def read_book(book_id: int):
 ```
 No exemplo acima o endpoint `/books` recebe obrigatoriamente um parâmetro do tipo inteiro que representa o id de um livro. Então para chamá-lo, você poderia executar um GET em `/books/1` e recuperar o livro de id 1.
 
-Quando precisamos acessar um recurso disponibilizado pela API e precisamos o **especificar**, digamos, com um id, parâmetros de path trazem um melhor entendimento do que a requisição sendo executada faz. No exemplo, nós queremos dos livros aquele de id 1. Assim `/books/1` se torna mais legível do que se fosse implementado com um parâmetro de query `/books?id=1`. Ambos atingem o mesmo objetivo, mas nesse caso, usar o parâmetro de path traz mais legibilidade a sua aplicação, por isso é interessante saber como usá-lo para que seja aplicado devidamente.
+Quando precisamos acessar um recurso disponibilizado pela API e precisamos o **especificar**, digamos, com um id, parâmetros de path trazem um melhor entendimento do que a requisição sendo executada faz. No exemplo anterior, nós queremos dos livros aquele de id 1. Assim `/books/1` se torna mais legível do que se fosse implementado com um parâmetro de query `/books?id=1`. Ambos atingem o mesmo objetivo, mas nesse caso, usar o parâmetro de path traz mais legibilidade a sua aplicação, por isso é interessante saber como usá-lo para que seja aplicado devidamente.
 
 ## Request Body (Payload)
 
@@ -257,7 +255,7 @@ Perceba também que dessa vez definimos o tipo do retorno do POST endpoint `/boo
 
 Ao desenvolver APIs, um dos cenários mais frequentes é a utilização de banco de dados relacionais. Com bancos de dados, temos acesso a informações armazenadas de maneira persistente e essas informações podem ser usadas para implementar a lógica de negócio de nossos endpoints. Em certos casos, a API que construimos terá o único objetivo de servir como interface ao banco de dados para que outras APIs possam acessá-lo com facilidade.
 
-Umas da maneiras mais simples de interagir com bancos de dados é através de ORMs. ORM significa Object Relational Mapping, então ela vai nos fornecer objetos que mapeiam tabelas de banco de dados. Ela permite que possamos fazer consultas na linguagem de programação que utilizamos, em nosso caso Python, sem necessidade de escrever SQL. A ORM que vamos utilizar nesse curso será Python Tortoise, visto que ela permite o uso de asíncronismo, uma das principais vantagens de FastAPI. Já o banco de dados escolhido é o PostgreSQL, um dos mais utilizados no mercado.
+Umas da maneiras mais simples de interagir com bancos de dados é através de ORMs. ORM significa Object Relational Mapping, então ela vai nos fornecer objetos que mapeiam tabelas de banco de dados. Ela permite que possamos fazer consultas na linguagem de programação que utilizamos, em nosso caso Python, sem necessidade de escrever SQL. A ORM que vamos utilizar nesse curso será [Tortoise](https://tortoise.github.io/), visto que ela permite o uso de asíncronismo, uma das principais vantagens de FastAPI. Já o banco de dados escolhido é o [PostgreSQL](https://www.postgresql.org/), um dos mais utilizados no mercado.
 
 ### Tortoise
 
@@ -266,10 +264,10 @@ Vejamos em linhas gerais como usar Tortoise em nossos projetos. Primeiro certifi
 systemctl status postgresql
 ```
 
-Para usar Tortoise, precisamos primeiro criar um banco de dados que vai conter as tabelas que criarmos. Vamos criar um banco chamado `library` e, para isso, execute os seguintes comandos no terminal. A senha default é `postgres`.
+Para usar Tortoise, precisamos primeiro criar um banco de dados que vai conter as tabelas que criarmos. Vamos criar um banco chamado `bookstore` e, para isso, execute os seguintes comandos no terminal. A senha default é `postgres`.
 ```bash
 psql --username=postgres --host=localhost
-CREATE DATABASE library;
+CREATE DATABASE bookstore;
 ```
 
 Uma vez o banco criado e ativo, podemos nos concentrar em como usar a ORM. Nesse exemplo, vamos definir uma classe chamada `Book` que mapeará uma tabela chamada `books` usando Tortoise. Essa tabela terá uma chave primária que será o campo `id` criado automaticamente, um campo `name` do tipo Char, um campo `description` também do tipo Char, um campo `price` que será um float e por fim um campo `created_at` que será do tipo data e será criado automaticamente sem que precisemos definí-lo.
@@ -325,7 +323,7 @@ async def get_all_books(book: schemas.Book) -> List[Book]:
 if __name__=="__main__":
     register_tortoise(
         app,
-        db_url="postgres://postgres:postgres@127.0.0.1:5432/library",
+        db_url="postgres://postgres:postgres@127.0.0.1:5432/bookstore",
         modules={"models": ["models"]},
         generate_schemas=True,
         add_exception_handlers=True,
@@ -333,14 +331,14 @@ if __name__=="__main__":
 ```
 Aqui, temos dois endpoints, o POST `/book` cria um livro na tabela `books` a partir da payload que ele recebe e o GET `/books` recupera todos os livros no banco de dados. Veja que a interface fornecida por Tortoise é capaz de executar consultas ao banco de forma asíncrona o que ajuda a otimizar a performance da API.
 
-Ao iniciar o servidor, o comando `register_tortoise` será executado. Ele iniciará a API e criará uma conexão com a base de dados PostgreSQL usando a url de conexão "postgres://postgres:postgres@127.0.0.1:5432/library" que identifica a instância do bando de dados. Essa url segue o formato 
-"DB_TYPE://USERNAME:PASSWORD@HOST:PORT/DB_NAME". Ao definir `generate_schemas` como `True` as tabelas definas em models.py serão criadas no bando de dados `library` sem que precisemos executar o SQL para isso diretamente. Tortoise sabe que deve criar tabelas a partir de models.py, pois o dissemos no parâmetro `modules` de `register_tortoise`.
+Ao iniciar o servidor, o comando `register_tortoise` será executado. Ele iniciará a API e criará uma conexão com a base de dados PostgreSQL usando a url de conexão "postgres://postgres:postgres@127.0.0.1:5432/bookstore" que identifica a instância do bando de dados. Essa url segue o formato 
+"DB_TYPE://USERNAME:PASSWORD@HOST:PORT/DB_NAME". Ao definir `generate_schemas` como `True` as tabelas definas em models.py serão criadas no bando de dados `bookstore` sem que precisemos executar o SQL para isso diretamente. Tortoise sabe que deve criar tabelas a partir de models.py, pois o dissemos no parâmetro `modules` de `register_tortoise`.
 
-Tortoise também nos possibilita diversas outras capacidades de manipulação de dados como filtrar e definir relações mais complexas entre as tabelas. Nós uma aplicação mais completa na seção onde implementaremos um projeto com FastAPI. 
+Tortoise também nos possibilita diversas outras capacidades de manipulação de dados como filtrar e definir relações mais complexas entre as tabelas. Nós implementaremos uma aplicação mais completa na seção onde implementaremos um projeto com FastAPI. 
 
 # Segurança no FastAPI
 
-Não importa o framework que você decida usar, a segurança da API é um assunto extremamente importante e precisa ser lidado com muita atenção. Existem muitos jeitos de garantir que seus endpoints sejam requisitados somente por aqueles que estão autenticados e possuem os acessos corretos. Atualmente, a utilização de tokens e do framework OAuth2 tem dominado o mercado em relação a essa segurança. Porém, aqui, veremos um jeito mais simples a fim de introduzir o assunto e facilitar seu entendimento. Para isso, vamos usar a autenticação do tipo `Basic` nesse curso em vez de outras mais complexas como utilizando tokens JWT.
+Não importa o framework que você decida usar, a segurança da API é um assunto extremamente importante e precisa ser cuidado com muita atenção. Existem muitos jeitos de garantir que seus endpoints sejam requisitados somente por aqueles que estão autenticados e possuem os acessos corretos. Atualmente, a utilização de tokens e do framework OAuth2 tem dominado o mercado em relação a essa segurança. Porém, aqui, veremos um jeito mais simples a fim de introduzir o assunto e facilitar o entendimento. Para isso, vamos usar a autenticação do tipo `Basic` nesse guia em vez de outras mais complexas como utilizando tokens JWT.
 
 A autenticação do tipo `Basic` requer apenas que o cliente da API passe um cabeçalho (header) na requisição informando o nome de usuário e sua senha. No lado da API, verificamos que o usuário de fato existe e que a senha fornecida é correta. Caso esses testes sejam positivos, damos continuidade à lógica do endpoint e retornamos a devida resposta. Entretanto, se houver falha, o endpoint retornará o erro 401 que significa que o cliente não está autorizado.
 
@@ -384,7 +382,7 @@ Aqui, definimos a variável `security` como uma instância de `HTTPBasic` e cria
 
 Para este exemplo, será melhor usar a interface fornecida pelo FastAPI no Swagger. Para acessar o endpoint `/user`, é preciso passar as credenciais corretas do usuário que são username=john e password=password. Ao fazer isso, podemos chamar o endpoint.
 
-Se você quiser se aprofundar mais em segurança de APIs, confira esse artigo no Medium TODO.
+Se você quiser se aprofundar mais em segurança, confira esse artigo no Medium [The Role Cryptography Plays in Security](https://medium.com/@luikymagno/the-role-cryptography-plays-in-security-32d522413e1e).
 
 # Mini projeto
 Nessa seção, vamos colocar tudo o que vimos em prática em um projeto que vai simular alguns aspectos do contexto de uma livraria. Além disso, após terminar a implementação, vamos dar os primeiros passos nos testes da aplicação para garantir que ela funcione como esperado, assim como vamos criar uma imagem docker para ela a fim de que ela possa ser implantada em qualquer máquina onde Docker esteja instalado.
@@ -421,7 +419,7 @@ Em um arquivo models.py, insira:
 from tortoise import fields
 from tortoise.models import Model
 
-import schemas
+import schemas as schemas
 
 class User(Model):
     """
@@ -431,13 +429,13 @@ class User(Model):
     class Meta:
         table="users"
 
-    username = fields.CharField(max_length=100, pk=True)
+    username = fields.CharField(max_length=100, pk=True, unique=True)
     password = fields.CharField(max_length=100)
     books: fields.ReverseRelation["Book"]
 
-    def to_user() -> schemas.User:
+    def to_user(self) -> schemas.User:
         """Create a book of type schemas.Book from models.Book"""
-        return User(**self.dict())
+        return schemas.User(**dict(self))
 
 class Book(Model):
     """
@@ -447,18 +445,20 @@ class Book(Model):
     class Meta:
         table="books"
 
-    id = fields.IntField(pk=True)
-    name = fields.CharField(max_length=100)
+    id = fields.IntField(pk=True, unique=True)
+    title = fields.CharField(max_length=100)
     description = fields.CharField(max_length=100)
+    author = fields.CharField(max_length=100)
     price = fields.DecimalField(max_digits=10, decimal_places=2)
     sold = fields.BooleanField(default=False)
     user: fields.ForeignKeyNullableRelation[User] = fields.ForeignKeyField(
-        "models.User", related_name="books"
+        "models.User", related_name="books", null=True
     )
 
-    def to_book() -> schemas.Book:
+    def to_book(self) -> schemas.Book:
         """Create a book of type schemas.Book from models.Book"""
-        return Book(**self.dict())
+        print(dict(self))
+        return schemas.Book(**dict(self))
 ```
 
 ## Endpoints
@@ -475,38 +475,47 @@ Em nosso projeto, teremos endpoints.
 Em um arquivo main.py, insira:
 ```python
 import logging
+import secrets
+from typing import List
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
+from tortoise.contrib.fastapi import register_tortoise
+
+import schemas as schemas
+import models as models
+from config import Config
 
 app = FastAPI()
 
 security = HTTPBasic()
 
 
-def get_current_user(credentials: HTTPBasicCredentials = Depends(security)) -> HTTPBasicCredentials:
-    current_username_bytes = credentials.username.encode("utf8")
-    correct_username_bytes = b"john"
-    is_correct_username = secrets.compare_digest(
-        current_username_bytes, correct_username_bytes
-    )
-
-    current_password_bytes = credentials.password.encode("utf8")
-    correct_password_bytes = b"password"
-    is_correct_password = secrets.compare_digest(
-        current_password_bytes, correct_password_bytes
-    )
-
-    if not (is_correct_username and is_correct_password):
+async def get_current_user(credentials: HTTPBasicCredentials = Depends(security)) -> models.User:
+    user_db = await models.User.filter(username=credentials.username).first()
+    if user_db is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
             headers={"WWW-Authenticate": "Basic"},
         )
-    return credentials
+
+    password_bytes = credentials.password.encode("utf8")
+    is_correct_password = secrets.compare_digest(
+        password_bytes, user_db.password.encode("utf8")
+    )
+
+    if not (is_correct_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Basic"},
+        )
+    return user_db
 
 @app.post("/user", status_code=status.HTTP_201_CREATED)
-def get_user(user: schemas.User):
+async def get_user(user: schemas.User):
     """Create a new user in the table 'users'"""
+    logging.info("test")
     user_db = await models.User.create(**user.dict())
     logging.info(f"User {user_db.username} was created")
 
@@ -514,12 +523,18 @@ def get_user(user: schemas.User):
 async def create_book(book: schemas.Book) -> None:
     """Create a new book in the table 'books'"""
     book_db = await models.Book.create(**book.dict(exclude_unset=True))
-    logging.info(f"Book {book_df.title} was created with id: {book.id}")
+    logging.info(f"Book {book_db.title} was created with id: {book_db.id}")
 
 @app.get("/book", status_code=status.HTTP_200_OK)
-async def get_book(title: str) -> Book:
+async def get_book(title: str) -> schemas.Book:
     """Get a book by its title"""
     book_db = await models.Book.filter(title=title).first()
+    if book_db is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Book with title {title} was not found"
+        )
+
     logging.info(f"Book {book_db.title} was retrieved")
     return book_db.to_book()
 
@@ -527,26 +542,39 @@ async def get_book(title: str) -> Book:
 async def sell_book(title: str, credentials: HTTPBasicCredentials = Depends(get_current_user)) -> None:
     """Sell a book to the authenticated user"""
     book_db = await models.Book.filter(title=title, sold=False).first()
+    if book_db is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Book with title {title} was not found"
+        )
+
     logging.info(f"Book {book_db.title} was retrieved")
-    book_db.sold = True
-    book_db.user = credentials.username
+    book_db.update_from_dict({"sold": True, "user_id": credentials.username})
     await book_db.save()
 
-@app.post("/books", status_code=status.HTTP_200_OK)
-async def get_books(credentials: HTTPBasicCredentials = Depends(get_current_user)) -> None:
+@app.get("/books", status_code=status.HTTP_200_OK)
+async def get_books(user_db: models.User = Depends(get_current_user)) -> List[schemas.Book]:
     """Fetch all books of the authenticated user"""
-    user_db = await models.User.filter(username=username).first()
-    logging.info(f"User {user_db.title} was retrieved")
-    return [book_db.to_book() async for book_db in await user_db.books]
+    logging.info(f"User {user_db.username} was retrieved")
+    return [book_db.to_book() async for book_db in user_db.books]
 
-if __name__=="__main__":
-    register_tortoise(
-        app,
-        db_url="postgres://postgres:postgres@127.0.0.1:5432/library",
-        modules={"models": ["models"]},
-        generate_schemas=True,
-        add_exception_handlers=True,
-    )
+register_tortoise(
+    app,
+    db_url=Config.DB_URL,
+    modules={"models": ["models"]},
+    generate_schemas=True,
+    add_exception_handlers=True,
+)
+```
+
+Para melhor organizar o código, crie uma classe de configuração. Em um arquivo config.py insira:
+```python
+class Config:
+    DB_USER: str = "postgres"
+    DB_PASSWORD: str = "postgres"
+    DB_HOST: str = "localhost"
+    DB_NAME: str = "library"
+    DB_URL: str = f"postgres://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
 ```
 
 Perceba que os endpoints criados aqui foram implementados usando funções asíncronas, já que operações asíncronas (consultas ao banco de dados) são realizadas.
@@ -560,72 +588,70 @@ Uma das partes mais importantes de todo projeto de software é o teste das funci
 
 Como vamos testar uma aplicação que interage com um banco de dados, uma das opções para não acessar o real banco de dados é usar um banco de dados em memória que será populado e destruído a cada vez que os testes forem executados. Assim, conseguimos simular com mais precisão o cenário real.
 
-O banco de dados em memória escolhido é o SQLite e para habilitá-lo, basta trocar a URL de conexão do PostgreSQL para `"sqlite://:memory:"` no `main.py`.
+O banco de dados em memória escolhido é o [SQLite](https://www.sqlite.org/index.html) e para habilitá-lo, basta trocar a URL de conexão do PostgreSQL para `"sqlite://:memory:"` no `main.py`.
 
-FastAPI também busca facilitar o desenvolvimento em relação aos testes e por isso fornece um cliente de teste que permite interagir com nossa API. Esse cliente é uma instância da classe TestClient. Além disso, para criar o cliente de teste e popular o banco de dados antes de cada teste, podemos usar fixtures em Python. De maneira resumida, testes anotados com fixtures terão certas instruções executadas antes e outras depois a cada vez que forem chamados. Essas instruções são definidas na própria fixture e são separadas pelo comando `yield`. 
+FastAPI também busca facilitar o desenvolvimento em relação aos testes e por isso fornece um cliente de teste que permite interagir com nossa API. Esse cliente é uma instância da classe TestClient. Além disso, para criar o cliente de teste, podemos usar fixtures em Python. De maneira resumida, testes anotados com fixtures terão certas instruções executadas antes e outras depois a cada vez que forem chamados. Essas instruções são definidas na própria fixture e são separadas pelo comando `yield`.
 
-Crie uma pasta `tests` e, em um arquivo tests.py, insira:
+Em um arquivo tests.py, insira:
 ```python
 from typing import Generator, AsyncGenerator
 
 import pytest
 from fastapi.testclient import TestClient
-from main import app
+from config import Config
 
 from tortoise.contrib.test import finalizer, initializer
+from tortoise import Tortoise
 
 import schemas
 import models
 
-user = schemas.User(username="testuser", password="password")
-book = schemas.Book(title="Test Book", author="Test Author", description="Test book description", price=50.0)
+Config.DB_URL = "sqlite://:memory:"
+from main import app
 
-@pytest.fixture(scope="module")
+user = schemas.User(username="testuser", password="password")
+book = schemas.Book(title="Test Book", author="Test Author", description="Test book description", price=50.0)    
+
+@pytest.fixture
 def client() -> Generator:
-    initializer(["models"])
     with TestClient(app) as c:
         yield c
-    finalizer()
-
-@pytest.fixture()
-async def populate_user() -> AsyncGenerator:
-    await models.User(**user.dict()).save()
-    yield None
-
-@pytest.fixture()
-async def populate_user_and_books() -> AsyncGenerator:
-    await models.User(**user.dict()).save()
-    await models.Book(**book.dict(), user_id=user.username).save()
-    yield None
 
 class TestBooks:
     url = "/books"
-    headers = {"Authorization": "Basic {user.username}{user.password}"}
 
-    @populate_user
-    def test_user_without_books(self, _, client: TestClient) -> None:
+    @pytest.mark.asyncio
+    async def test_user_without_books(self, client: TestClient) -> None:
+
+        # Populate the db
+        await models.User(**user.dict()).save()
+
         response = client.get(
             self.url,
-            headers=self.headers
+            auth=(user.username, user.password),
         )
         assert response.status_code == 200
         assert response.json() == []
     
-    @populate_user_and_books
-    def test_user_with_book(self, client: TestClient, _) -> None:
+    @pytest.mark.asyncio
+    async def test_user_with_book(self, client: TestClient) -> None:
+
+        # Populate the db
+        await models.User(**user.dict()).save()
+        await models.Book(**book.dict(), user_id=user.username).save()
+
         response = client.get(
             self.url,
-            headers=self.headers
+            auth=(user.username, user.password),
         )
         assert response.status_code == 200
         assert response.json() == [book.dict()]
 ```
 
-Para executar os testes, basta rodar o comand `pytest`.
-
+Para executar os testes, basta rodar o comand `pytest tests.py`.
 
 ## Docker
-Docker é um software que permite definir containers onde nossos projetos serão executados de maneira que qualquer outra máquina que possua Docker instalado poderá ativar o container sem a necessidade de se preocupar com demais dependencias. Com Docker, podemos agilizar a implantação de nossos projetos em ambientes como produção, assim como compartilhá-los de maneira simples permitindo a facilitação do processo de desenvolvimento.
+Docker é um software que permite definir containers onde nossos projetos serão executados de maneira que qualquer outra máquina que possua Docker instalado poderá ativar o container sem a necessidade de se preocupar com demais dependências. Com Docker, podemos agilizar a implantação de nossos projetos em ambientes como produção, assim como compartilhá-los de maneira simples permitindo a facilitação do processo de desenvolvimento.
 
 Primeiro, vamos definir o arquivo Docker que permitirá estabelecer a imagem da qual containers poderão ser criados. Na raíz do projeto, insira o arquivo `Dockerfile`
 ```dockerfile
@@ -650,5 +676,6 @@ CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 Agora, basta construir a imagem e instanciar um container a partir dela.
 ```bash
-docker build .
+docker build -t fastapi_project .
+docker run -d --name api -p 80:80 --network="host" fastapi_project
 ```
