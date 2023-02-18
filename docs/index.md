@@ -1,5 +1,7 @@
 # Um Guia Para Começar Com FastAPI
 
+## Introdução
+
 Nesse guia apresentaremos o framework FastAPI e como ele pode ser utilizado para construir APIs do tipo REST em Python de maneira eficiente.
 
 Antes de começarmos, um pouco de contexto. Hoje em dia, a comunicação entre sistemas de computação se dá em grande parte por meio de APIs. Nesse cenário, um sistema A envia requisições HTTP (HTTP sendo um protocolo de comunicação na internet) a um sistema B e recebe como resposta os recursos solicitados ou a confirmação de que uma ação foi realizada no sistema B.
