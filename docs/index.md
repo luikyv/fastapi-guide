@@ -13,7 +13,7 @@ Por ser baseado em Python o desenvolvimento com FastAPI é extremamente fácil, 
 
 Além da facilidade que Python traz ao desenvolvimento, essa linguagem é bastante útil em ambientes onde a manipulação de dados é constante. Podemos comprovar isso ao pensar que a bibliotecas mais famosas para manipulação de dados vêm do Python. Temos como exemplos Numpy e Pandas. Assim, FastAPI se torna uma boa opção se sua aplicação vai ter como foco dados.
 
-Além disso, como o próprio nome diz, o FastAPI é fast. O "rápido" em seu nome se dá principalmente pelo fato de podermos utilizar programação asíncrona de maneira simples nesse framework. Isso traz mais flexibilade e eficiência a sua API, pois você tem certo controle de como diferentes processos são chamados. Mais para frente vamos ver em detalhes como tudo isso funciona.
+Além disso, como o próprio nome diz, o FastAPI é fast. O "rápido" em seu nome se dá principalmente pelo fato de podermos utilizar programação assíncrona de maneira simples nesse framework. Isso traz mais flexibilidade e eficiência a sua API, pois você tem certo controle de como diferentes processos são chamados. Mais para frente vamos ver em detalhes como tudo isso funciona.
 
 Falando agora de popularidade, FastAPI vem desbancando diversos outros frameworks e, apesar de ter aparecido recentemente no mercado, muitos desenvolvedores e empresas estão optando por ele.
 
@@ -36,11 +36,11 @@ Dentre os métodos disponíveis no protocolo HTTP, os que mais iremos usar são 
 
 ### Rest APIs
 
-Antes de entendermos o que é uma API REST, precisamos ter em mente o que é uma API. A sigla API significa Application Programming Interface, então uma interface de programação de aplicação. Uma API nada mais é do que um contrato a ser seguido para poder intergir como uma aplicação que possui recursos que interessam ao desenvolvedor. Esse recursos mantidos pela aplicação podem ser dados, uma lógida de computação, entre outros. Por exemplo, o Google tem uma [API](https://materiais.ipnet.cloud/google-maps-api-entrada-b?utm_source=google-search&utm_medium=cpc&utm_campaign=[Cadastro]_Google_Maps_Platform_Especificas_de_Conversao_-_Fundo_Brasil&utm_id=17377035032&utm_term=135647100845&utm_content=api%20google%20maps&gclid=Cj0KCQiA5NSdBhDfARIsALzs2ECb9W2XJsivUJCRjqqfl0krafI_ttroFSgQRXOhFZEBlMjGHJSl0ycaApbtEALw_wcB) que permite desenvolvedores integrar mapas personalizados do Google Maps em suas aplicações. Assim uma API pode ser vista como um intermediador entre sua aplicação e a aplicação de um terceiro que possui recursos que você precisa.
+Antes de entendermos o que é uma API REST, precisamos ter em mente o que é uma API. A sigla API significa Application Programming Interface, então uma interface de programação de aplicação. Uma API nada mais é do que um contrato a ser seguido para poder interagir como uma aplicação que possui recursos que interessam ao desenvolvedor. Esse recursos mantidos pela aplicação podem ser dados, uma lógica de computação, entre outros. Por exemplo, o Google tem uma [API](https://materiais.ipnet.cloud/google-maps-api-entrada-b?utm_source=google-search&utm_medium=cpc&utm_campaign=[Cadastro]_Google_Maps_Platform_Especificas_de_Conversao_-_Fundo_Brasil&utm_id=17377035032&utm_term=135647100845&utm_content=api%20google%20maps&gclid=Cj0KCQiA5NSdBhDfARIsALzs2ECb9W2XJsivUJCRjqqfl0krafI_ttroFSgQRXOhFZEBlMjGHJSl0ycaApbtEALw_wcB) que permite desenvolvedores integrar mapas personalizados do Google Maps em suas aplicações. Assim uma API pode ser vista como um intermediador entre sua aplicação e a aplicação de um terceiro que possui recursos que você precisa.
 
 Já uma API REST, você também vai ouvir API RESTful, é uma API que segue a arquitetura REST, onde REST quer dizer "Representational State Transfer" ou Transferência de Estado Representacional. REST é um conjunto de restrições para a arquitetura da sua API. Se sua API respeita essas restrições, você tem uma API REST.
 
-O nome REST se dá pelo fato que, quando um cliente requisita um recurso à API através do protocolo HTTP, a API responde com uma representação do estado atual do recurso. Essa reprentação pode vir em diversos formatos como JSON e HTML. Entretanto, JSON é o mais utilizado por ser uma formato eficiente com estrutura simples e várias linguagens de programação permitem interação com ele.
+O nome REST se dá pelo fato que, quando um cliente requisita um recurso à API através do protocolo HTTP, a API responde com uma representação do estado atual do recurso. Essa representação pode vir em diversos formatos como JSON e HTML. Entretanto, JSON é o mais utilizado por ser uma formato eficiente com estrutura simples e várias linguagens de programação permitem interação com ele.
 
 Dentre algumas restrições incluídas no REST temos
 * Arquitetura cliente/servidor onde a comunicação se dá com HTTP (HTTP sendo um protocolo de comunicação onde conseguimos interagir com um servidor de endereço conhecido, endereço esse que é uma url, utilizando métodos como GET, POST, ...)
@@ -49,7 +49,7 @@ Dentre algumas restrições incluídas no REST temos
 Existem algumas outras restrições, mas, só pelo fato de utilizar o framework FastAPI, muitas já são respeitadas. Além disso, apesar dessas restrições, APIs REST são simples de desenvolver e utilizar e, por isso, estão se tornando a primeira opção dos desenvolvedores.
 
 ### Pyenv
-Quando trabalhando com projetos em Python, é fundamental a utilização de ambientes virtuais. Para demonstrar isso, imagine que você tem dois projetos em Python em seu computador e ambos dependem da biblioteca, digamos, Tortoise. O problema é que o primeiro projeto precisa que a versão de Tortoise seja 1.0, já o segundo precisa da versão 1.1. Ambientes virtuais resolver esse problema, pois, para cada projeto, você cria um ambiente virtual e esses ambientes são independetes um do outro. Assim, você pode usar diferentes versão da mesma biblioteca ou mesmo diferentes versões do Python, sem que hajam conflitos entre eles.
+Quando trabalhando com projetos em Python, é fundamental a utilização de ambientes virtuais. Para demonstrar isso, imagine que você tem dois projetos em Python em seu computador e ambos dependem da biblioteca, digamos, Tortoise. O problema é que o primeiro projeto precisa que a versão de Tortoise seja 1.0, já o segundo precisa da versão 1.1. Ambientes virtuais resolver esse problema, pois, para cada projeto, você cria um ambiente virtual e esses ambientes são independentes um do outro. Assim, você pode usar diferentes versão da mesma biblioteca ou mesmo diferentes versões do Python, sem que hajam conflitos entre eles.
 
 Aqui usaremos Pyenv para criar e gerenciar ambientes virtuais, mas você pode usar qualquer outra ferramenta que lide com ambientes virtuais.
 
@@ -108,13 +108,13 @@ Se quiser saber mais sobre Pyenv e Poetry, confira esse artigo no Medium: [Manag
 
 ### Programação Assíncrona
 
-Uma das grandes vantagens que o FastAPI traz é a possibilidade de utilizar programação asíncrona. Nesse modelo de programação, nos fazemos uma chamada a uma tarefa e vamos para outra enquanto a primeira aguarda ser finalizada. Assim, conseguimos introduzir paralelismo em nosso software e temos controle de quando essas chamadas asíncronas são feitas.
+Uma das grandes vantagens que o FastAPI traz é a possibilidade de utilizar programação assíncrona. Nesse modelo de programação, nos fazemos uma chamada a uma tarefa e vamos para outra enquanto a primeira aguarda ser finalizada. Assim, conseguimos introduzir paralelismo em nosso software e temos controle de quando essas chamadas assíncronas são feitas.
 
-O modelo de programação asíncrona é bastante eficaz quando precisamos executar tarefas bloqueantes. Essas tarefas levam um tempo relativamente alto para terminar e exemplos são requisições HTTP, consultas a bancos de dados e operações I/O. Quando um processo asíncrono atinge um operação bloqueante, ele a começa e a deixa esperando concluir. Enquanto isso, o processo começa a executar outra tarefa e, uma vez terminada a operação bloqueante, ele retorna ao local onde estava para terminar a execução.
+O modelo de programação assíncrona é bastante eficaz quando precisamos executar tarefas bloqueantes. Essas tarefas levam um tempo relativamente alto para terminar e exemplos são requisições HTTP, consultas a bancos de dados e operações I/O. Quando um processo assíncrono atinge um operação bloqueante, ele a começa e a deixa esperando concluir. Enquanto isso, o processo começa a executar outra tarefa e, uma vez terminada a operação bloqueante, ele retorna ao local onde estava para terminar a execução.
 
-Em Python, temos duas palavras chave que nos permitem implementar operações asíncronas. A primeira é `async` e você a usa para definir funções que serão executadas asíncronamente. A outra é `await` e é usada para chamar funções asíncronas. Sendo mais específico, funções definidas com `async` são chamadas de corotinas e o retorno dessas são futures. Quando você chama uma função asíncrona com `await`, ela te retorna um future que é um objeto que vai ser resolvido depois como o real resultado da função assim que ele termina de executar.
+Em Python, temos duas palavras chave que nos permitem implementar operações assíncronas. A primeira é `async` e você a usa para definir funções que serão executadas assincronamente. A outra é `await` e é usada para chamar funções assíncronas. Sendo mais específico, funções definidas com `async` são chamadas de co-rotinas e o retorno dessas são futures. Quando você chama uma função assíncrona com `await`, ela te retorna um future que é um objeto que vai ser resolvido depois como o real resultado da função assim que ele termina de executar.
 
-Vejamos um exempo de como isso funciona na prática. Aqui, vamos usar a biblioteca Asyncio para chamar asíncronamente uma função de sleep
+Vejamos um exemplo de como isso funciona na prática. Aqui, vamos usar a biblioteca Asyncio para chamar assincronamente uma função de sleep
 ```python
 import asyncio
 
@@ -124,7 +124,7 @@ async def fake_blocking_operation(id: int) -> None:
     print(f"Fake blocking operation {id} has completed")
 ```
 
-Se quisermos executar duas chamadas dessa função paralelamente, podemos usar a função `asyncio.gather` que recebe como argumento uma sequência de corotinas.
+Se quisermos executar duas chamadas dessa função paralelamente, podemos usar a função `asyncio.gather` que recebe como argumento uma sequência de co=rotinas.
 ```python
 async def main_in_parallel() -> None:
     await asyncio.gather(
@@ -148,9 +148,9 @@ Fake blocking operation 2 has completed
 Elapsed time: 1.0s
 ```
 
-Perceba que ao invés de esperar 2 segundos para as duas chamadas da operação bloqueante terminarem, só tivemos que esperar 1 segundo. Isso exemplifica como a programação asíncrona é útil quando aplicada do jeito correto. Em FastAPI, nos podemos criar funções e endpoints chamando operações asíncronas o que torna no código bastante eficaz.
+Perceba que ao invés de esperar 2 segundos para as duas chamadas da operação bloqueante terminarem, só tivemos que esperar 1 segundo. Isso exemplifica como a programação assíncrona é útil quando aplicada do jeito correto. Em FastAPI, nos podemos criar funções e endpoints chamando operações assíncronas o que torna no código bastante eficaz.
 
-Se quiser saber mais como funciona a programação asíncrona em Python, confira meu artigo no Medium que mostra como usar Asyncio e seus conceitos base: [Asynchrounous Programming with Python Asyncio](https://medium.com/@luikymagno/asynchrounous-programming-with-python-asyncio-db87f2936fb0).
+Se quiser saber mais como funciona a programação assíncrona em Python, confira meu artigo no Medium que mostra como usar Asyncio e seus conceitos base: [Asynchrounous Programming with Python Asyncio](https://medium.com/@luikymagno/asynchrounous-programming-with-python-asyncio-db87f2936fb0).
 
 ## FastAPI
 
@@ -188,15 +188,15 @@ Ademais, FastAPI gera automaticamente uma especificação da sua API no padrão 
 
 ### Parâmetros
 
-Existem dois tipos de parâmetros que você pode definir em seus endpoints e ambos são responsáveis por modificar o comportamente do endpoint sendo chamado. O primeiro são os parâmetros de query e funcionam exatamente como parâmetros de uma função qualquer.
+Existem dois tipos de parâmetros que você pode definir em seus endpoints e ambos são responsáveis por modificar o comportamento do endpoint sendo chamado. O primeiro são os parâmetros de query e funcionam exatamente como parâmetros de uma função qualquer.
 ```python
 @app.get("/books")
 async def read_book(genre: str):
     return {"book_genre": genre}
 ```
 
-Para chamar esse endpoint, poderiamos realizar um GET em `/books?genre=action`. Neste caso, estariamos recuperando um ou vários livros do gênero ação.
-Parâmetros de query veem ao final do path e são precedidos de `?`. Se houvessem mais parâmetros, eles precisariam estar separados por `&` na URL. Eles são úteis para filtar recursos e trazer mais informação à execução da regra de negócio.
+Para chamar esse endpoint, poderíamos realizar um GET em `/books?genre=action`. Neste caso, estaríamos recuperando um ou vários livros do gênero ação.
+Parâmetros de query veem ao final do path e são precedidos de `?`. Se houvessem mais parâmetros, eles precisariam estar separados por `&` na URL. Eles são úteis para filtrar recursos e trazer mais informação à execução da regra de negócio.
 
 Além disso, podemos customizar ainda mais esse parâmetro com validações e valores padrão. Para isso, podemos usar o objeto `Query` como valor padrão do parâmetro como no seguinte exemplo:
 ```python
@@ -246,7 +246,7 @@ async def create_book(book: schemas.Book) -> schemas.Book:
 
 Ao fazer isso, o endpoint `/book` do tipo POST vai receber um Json que deve estar formatado com as variáveis de Book e vai criar um objeto dessa classe o qual vai passar como parâmetro ao endpoint onde nós podemos realizar as operações que desejamos. Caso o Json recebido não esteja no formato adequado, o cliente receberá o erro 422.
 
-Para ver isso funcionando, você pode realizar uma chamda no terminal, já que o browser não será útil, pois precisamos realizar um POST e não um GET. Com o servidor rodando localmente, execute o comando:
+Para ver isso funcionando, você pode realizar uma chamada no terminal, já que o browser não será útil, pois precisamos realizar um POST e não um GET. Com o servidor rodando localmente, execute o comando:
 ```bash
 curl -X POST http://localhost:8080/book
    -H 'Content-Type: application/json'
@@ -258,9 +258,9 @@ Perceba também que dessa vez definimos o tipo do retorno do POST endpoint `/boo
 
 ## FastAPI com Banco de dados
 
-Ao desenvolver APIs, um dos cenários mais frequentes é a utilização de banco de dados relacionais. Com bancos de dados, temos acesso a informações armazenadas de maneira persistente e essas informações podem ser usadas para implementar a lógica de negócio de nossos endpoints. Em certos casos, a API que construimos terá o único objetivo de servir como interface ao banco de dados para que outras APIs possam acessá-lo com facilidade.
+Ao desenvolver APIs, um dos cenários mais frequentes é a utilização de banco de dados relacionais. Com bancos de dados, temos acesso a informações armazenadas de maneira persistente e essas informações podem ser usadas para implementar a lógica de negócio de nossos endpoints. Em certos casos, a API que construímos terá o único objetivo de servir como interface ao banco de dados para que outras APIs possam acessá-lo com facilidade.
 
-Umas da maneiras mais simples de interagir com bancos de dados é através de ORMs. ORM significa Object Relational Mapping, então ela vai nos fornecer objetos que mapeiam tabelas de banco de dados. Ela permite que possamos fazer consultas na linguagem de programação que utilizamos, em nosso caso Python, sem necessidade de escrever SQL. A ORM que vamos utilizar nesse curso será [Tortoise](https://tortoise.github.io/), visto que ela permite o uso de asíncronismo, uma das principais vantagens de FastAPI. Já o banco de dados escolhido é o [PostgreSQL](https://www.postgresql.org/), um dos mais utilizados no mercado.
+Umas da maneiras mais simples de interagir com bancos de dados é através de ORMs. ORM significa Object Relational Mapping, então ela vai nos fornecer objetos que mapeiam tabelas de banco de dados. Ela permite que possamos fazer consultas na linguagem de programação que utilizamos, em nosso caso Python, sem necessidade de escrever SQL. A ORM que vamos utilizar nesse curso será [Tortoise](https://tortoise.github.io/), visto que ela permite o uso de assincronismo, uma das principais vantagens de FastAPI. Já o banco de dados escolhido é o [PostgreSQL](https://www.postgresql.org/), um dos mais utilizados no mercado.
 
 ### Tortoise
 
@@ -275,7 +275,7 @@ psql --username=postgres --host=localhost
 CREATE DATABASE bookstore;
 ```
 
-Uma vez o banco criado e ativo, podemos nos concentrar em como usar a ORM. Nesse exemplo, vamos definir uma classe chamada `Book` que mapeará uma tabela chamada `books` usando Tortoise. Essa tabela terá uma chave primária que será o campo `id` criado automaticamente, um campo `name` do tipo Char, um campo `description` também do tipo Char, um campo `price` que será um float e por fim um campo `created_at` que será do tipo data e será criado automaticamente sem que precisemos definí-lo.
+Uma vez o banco criado e ativo, podemos nos concentrar em como usar a ORM. Nesse exemplo, vamos definir uma classe chamada `Book` que mapeará uma tabela chamada `books` usando Tortoise. Essa tabela terá uma chave primária que será o campo `id` criado automaticamente, um campo `name` do tipo Char, um campo `description` também do tipo Char, um campo `price` que será um float e por fim um campo `created_at` que será do tipo data e será criado automaticamente sem que precisemos defini-lo.
 
 Em um arquivo chamado models.py, digite:
 ```python
@@ -334,7 +334,7 @@ if __name__=="__main__":
         add_exception_handlers=True,
     )
 ```
-Aqui, temos dois endpoints, o POST `/book` cria um livro na tabela `books` a partir da payload que ele recebe e o GET `/books` recupera todos os livros no banco de dados. Veja que a interface fornecida por Tortoise é capaz de executar consultas ao banco de forma asíncrona o que ajuda a otimizar a performance da API.
+Aqui, temos dois endpoints, o POST `/book` cria um livro na tabela `books` a partir da payload que ele recebe e o GET `/books` recupera todos os livros no banco de dados. Veja que a interface fornecida por Tortoise é capaz de executar consultas ao banco de forma assíncrona o que ajuda a otimizar a performance da API.
 
 Ao iniciar o servidor, o comando `register_tortoise` será executado. Ele iniciará a API e criará uma conexão com a base de dados PostgreSQL usando a url de conexão "postgres://postgres:postgres@127.0.0.1:5432/bookstore" que identifica a instância do bando de dados. Essa url segue o formato 
 "DB_TYPE://USERNAME:PASSWORD@HOST:PORT/DB_NAME". Ao definir `generate_schemas` como `True` as tabelas definas em models.py serão criadas no bando de dados `bookstore` sem que precisemos executar o SQL para isso diretamente. Tortoise sabe que deve criar tabelas a partir de models.py, pois o dissemos no parâmetro `modules` de `register_tortoise`.
@@ -383,7 +383,7 @@ def get_user(credentials: HTTPBasicCredentials = Depends(get_current_username)):
     return {"username": credentials.username}
 ```
 
-Aqui, definimos a variável `security` como uma instância de `HTTPBasic` e criamos uma função que depende dessa variável. Por sua vez, essa função é atribuíada ao parâmetro `credentials` do endpoint GET `user`. Ao fazer isso, quando o endpoint for requisitado, FastAPI vai tentar chamar essa função com os valores fornecidos pelo cliente no header. Isso acontece, pois estamos usando a classe `Depends` que declara uma dependência que deve ser satisfeita. Ao chamar essa função, fazemos a verificação usuário por seu nome que deve ser `john` e sua senha `password`. Se os valores estiverem corretos, retornamos o nome do usuário. Caso contrário retornamos o erro 401. 
+Aqui, definimos a variável `security` como uma instância de `HTTPBasic` e criamos uma função que depende dessa variável. Por sua vez, essa função é atribuída ao parâmetro `credentials` do endpoint GET `user`. Ao fazer isso, quando o endpoint for requisitado, FastAPI vai tentar chamar essa função com os valores fornecidos pelo cliente no header. Isso acontece, pois estamos usando a classe `Depends` que declara uma dependência que deve ser satisfeita. Ao chamar essa função, fazemos a verificação usuário por seu nome que deve ser `john` e sua senha `password`. Se os valores estiverem corretos, retornamos o nome do usuário. Caso contrário retornamos o erro 401. 
 
 Para este exemplo, será melhor usar a interface fornecida pelo FastAPI no Swagger. Para acessar o endpoint `/user`, é preciso passar as credenciais corretas do usuário que são username=john e password=password. Ao fazer isso, podemos chamar o endpoint.
 
@@ -398,7 +398,7 @@ Para o contexto simulado em nosso projeto, teremos 3 entidades que serão:
 * user com atributos username e password
 * book com atributos title, author, description, price
 
-Cada uma dessas entidades será mapeada por uma tabela. Além disso, cada entidade deve ser mapeada também com uma classe que extende o `BaseModel` de Pydantic para que possa melhor interagir nos endpoints.
+Cada uma dessas entidades será mapeada por uma tabela. Além disso, cada entidade deve ser mapeada também com uma classe que estende o `BaseModel` de Pydantic para que possa melhor interagir nos endpoints.
 
 
 Em um arquivo schemas.py, insira:
@@ -417,7 +417,7 @@ class User(BaseModel):
     password: str
 ```
 
-Para modelar essas entidades no banco de dados, precisamos entender a relação entre elas para que possamos as implementar corretamente usando Tortoise. Vamos pensar um pouco, um usuário pode comprar vários livros, mas uma unidade de um livro só pode ser comprada por um usuário. Assim, vemos que a relação entre as entidade é um usuário para muitos livros. Para implementar essa relação, uma referência ao usuário, logo sua chave primária, deve exister em livro, sendo esse o conceito de chave estrangeira.
+Para modelar essas entidades no banco de dados, precisamos entender a relação entre elas para que possamos as implementar corretamente usando Tortoise. Vamos pensar um pouco, um usuário pode comprar vários livros, mas uma unidade de um livro só pode ser comprada por um usuário. Assim, vemos que a relação entre as entidade é um usuário para muitos livros. Para implementar essa relação, uma referência ao usuário, logo sua chave primária, deve existir em livro, sendo esse o conceito de chave estrangeira.
 
 Em um arquivo models.py, insira:
 ```python
@@ -582,7 +582,7 @@ class Config:
     DB_URL: str = f"postgres://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
 ```
 
-Perceba que os endpoints criados aqui foram implementados usando funções asíncronas, já que operações asíncronas (consultas ao banco de dados) são realizadas.
+Perceba que os endpoints criados aqui foram implementados usando funções assíncronas, já que operações assíncronas (consultas ao banco de dados) são realizadas.
 
 Com os endpoint implementados, ao ativar o servidor, podemos utilizar a interface do Swagger para realizar operações de cadastro de usuários e livros, assim como vendas e consulta do histórico de compras de um usuário.
 
@@ -653,12 +653,12 @@ class TestBooks:
         assert response.json() == [book.dict()]
 ```
 
-Para executar os testes, basta rodar o comand `pytest tests.py`.
+Para executar os testes, basta rodar o comando `pytest tests.py`.
 
 ### Docker
 Docker é um software que permite definir containers onde nossos projetos serão executados de maneira que qualquer outra máquina que possua Docker instalado poderá ativar o container sem a necessidade de se preocupar com demais dependências. Com Docker, podemos agilizar a implantação de nossos projetos em ambientes como produção, assim como compartilhá-los de maneira simples permitindo a facilitação do processo de desenvolvimento.
 
-Primeiro, vamos definir o arquivo Docker que permitirá estabelecer a imagem da qual containers poderão ser criados. Na raíz do projeto, insira o arquivo `Dockerfile`
+Primeiro, vamos definir o arquivo Docker que permitirá estabelecer a imagem da qual containers poderão ser criados. Na raiz do projeto, insira o arquivo `Dockerfile`
 ```dockerfile
 ## Start from the official Python base image
 FROM python:3.9
