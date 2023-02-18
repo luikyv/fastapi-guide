@@ -1,11 +1,8 @@
 title: Guia FastAPI
-description: Um guia para começar com FastAPI
-description: >
-  Um guia para começar com FastAPI usando ferramentas como Poetry e Tortoise-ORM.
+description: Um guia para começar com FastAPI usando ferramentas como Poetry e Tortoise-ORM.
 
-author:
-  name: luikymagno
-  email: luikymagno@gmail.com
+author: luikymagno
+email: luikymagno@gmail.com
 
 markdown: kramdown
 theme: minima
