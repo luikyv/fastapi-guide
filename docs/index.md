@@ -1,6 +1,9 @@
-# Um Guia Para Começar Com FastAPI
+---
+layout: page
+title: Guia para começar com FastAPI
+permalink: /guide/
+---
 
-## Introdução
 
 Nesse guia apresentaremos o framework FastAPI e como ele pode ser utilizado para construir APIs do tipo REST em Python de maneira eficiente.
 
