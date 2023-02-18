@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Guia para começar com FastAPI
-permalink: /guide/
 ---
 
 
