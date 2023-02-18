@@ -1,7 +1,9 @@
 ---
 layout: page
-title: About
+title: Sobre
 permalink: /about/
 ---
 
-This is the base Jekyll theme. 
+Guia para apresentar o framework FastAPI e como integrá-lo com ferramentas como Poetry e Tortoise-ORM.
+
+Confira meu [GitHub](https://github.com/luikymagno) e me siga nas redes sociais [LinkedIn](https://www.linkedin.com/in/luiky-vasconcelos/)!
