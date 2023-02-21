@@ -17,7 +17,7 @@ Além disso, como o próprio nome diz, o FastAPI é fast. O "rápido" em seu nom
 
 Falando agora de popularidade, FastAPI vem desbancando diversos outros frameworks e, apesar de ter aparecido recentemente no mercado, muitos desenvolvedores e empresas estão optando por ele.
 
-Indo ao que interessa a todos, vemos que a [média salarial](https://www.linkedin.com/posts/tiangolo_fastapi-activity-7010582598099849217-CzZt?utm_source=share&utm_medium=member_desktop) de desenvolvedores de FastAPI é bem alta e maior do que a de desenvolvedores de frameworks como .NET e Node.js o que é um feito impressionante.
+Indo ao que interessa a todos, vemos que a [média salarial](https://survey.stackoverflow.co/2022/#top-paying-technologies-web-frameworks) de desenvolvedores de FastAPI é bem alta e maior do que a de desenvolvedores de frameworks como .NET e Node.js o que é um feito impressionante.
 
 Depois dessa breve introdução, vamos ver em detalhes alguns conceitos sobre desenvolvimento de APIs, ferramentas do Python e entender como de fato usar FastAPI.
 
